@@ -1,9 +1,13 @@
 spring:
   mvc:
     view:
-      prefix: /WEB-INF/
+      prefix: /WEB-INF/jsp/
       suffix: .jsp
 
 server:
   servlet:
     context-path: /talent/
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.sanjiang.talent.po
