@@ -3,11 +3,21 @@ spring:
     view:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
+  datasource:
+    username: root
+    password: password
+    #使用 MySQL连接驱动是8.0以上，需要在Url后面加上时区, GMT%2B8代表中国时区，不然报时区错误
+    url: jdbc:mysql://127.0.0.1:3306/talent?serverTimezone=GMT%2B8
+    # 注意： 新版本驱动包，要使用以下类作为驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 server:
   servlet:
     context-path: /talent/
 
 mybatis:
-  mapper-locations: classpath:mapping/*Mapper.xml
+  #核心配置文件路径
+  config-location: classpath:mybatis/mybatis-config.xml
+  #映射配置文件路径
+  mapper-locations: classpath:mybatis/mapping/*.xml
   type-aliases-package: com.sanjiang.talent.po

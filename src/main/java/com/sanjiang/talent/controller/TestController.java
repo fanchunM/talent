@@ -17,7 +17,8 @@ public class TestController {
 
     @GetMapping("nihao")
     public String enterPage(ModelMap modelMap) {
-        List<User> user = userService.getUser();
+//        List<User> user = userService.getUser();
+        User user = userService.getUserById("1");
         modelMap.addAttribute("users", user);
         return "test";
     }

@@ -3,18 +3,18 @@ package com.sanjiang.talent.po;
 
 public class User {
 
-    private String userId;
+    private String Id;
 
     private String name;
 
     private String gender;
 
-    public String getUserId() {
-        return userId;
+    public String getId() {
+        return Id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(String id) {
+        Id = id;
     }
 
     public String getName() {
