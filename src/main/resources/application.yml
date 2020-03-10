@@ -19,5 +19,13 @@ mybatis:
   #核心配置文件路径
   config-location: classpath:mybatis/mybatis-config.xml
   #映射配置文件路径
-  mapper-locations: classpath:mybatis/mapping/*.xml
+  mapper-locations: classpath:mybatis/mapping/*Mapper.xml
   type-aliases-package: com.sanjiang.talent.po
+
+#showSql
+logging:
+  level:
+    com:
+      sanjiang:
+        talent:
+          mapper: debug

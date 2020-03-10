@@ -11,15 +11,15 @@
 </head>
 <body>
 <div style="text-align: center">
-    <div style="color:red; font-family: 'Arial Black'; font-size: 22px" onclick="open111();">孟凡春</div>
-    <table>
-        <c:forEach items="${users}" var="user">
-            <tr>
-                <td>${user.id}</td>
-                <td>${user.name}</td>
-                <td>${user.gender}</td>
-            </tr>
-        </c:forEach>
-    </table>
+    <div style="color:red; font-family: 'Arial Black'; font-size: 22px" onclick="open111();">${users}</div>
+    <%--<table>--%>
+        <%--<c:forEach items="${users}" var="user">--%>
+            <%--<tr>--%>
+                <%--<td>${user.id}</td>--%>
+                <%--<td>${user.name}</td>--%>
+                <%--<td>${user.gender}</td>--%>
+            <%--</tr>--%>
+        <%--</c:forEach>--%>
+    <%--</table>--%>
 </div>
 </body>
