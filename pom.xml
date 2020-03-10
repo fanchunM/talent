@@ -84,8 +84,6 @@
             <artifactId>ecj</artifactId>
             <version>4.6.1</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
