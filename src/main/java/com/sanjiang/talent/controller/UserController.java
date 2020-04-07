@@ -19,11 +19,14 @@ public class UserController {
 
     @PostMapping("login")
     public ResponseEntity<String> login(@RequestBody UserDTO userDTO, ModelMap modelMap) {
-        User userByNameAndPwd = userService.getUserByNameAndPwd(userDTO.getName(), userDTO.getPassword());
+        User userByNameAndPwd = userService.getUserByNameAndPwd(userDTO.getUserName(), userDTO.getPassword());
         LoginUserDto loginUserDto = new LoginUserDto();
-        loginUserDto.setChsName(userByNameAndPwd.getName());
+        loginUserDto.setLoginUserId(userByNameAndPwd.getId());
+        loginUserDto.setPosition(userByNameAndPwd.getPosition());
+        loginUserDto.setDepartment(userByNameAndPwd.getDepartment());
+        loginUserDto.setChsName(userByNameAndPwd.getChsName());
         loginUserDto.setPassword(userByNameAndPwd.getPassword());
-        loginUserDto.setStudent(userByNameAndPwd.isStudent());
+        loginUserDto.setIsTeacher(userByNameAndPwd.getIsTeacher());
         modelMap.addAttribute("loginUserDto", loginUserDto);
         return new ResponseEntity<String>("{\"success\":true}", HttpStatus.OK);
     }

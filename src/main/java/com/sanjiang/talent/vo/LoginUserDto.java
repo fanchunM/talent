@@ -1,41 +1,22 @@
 package com.sanjiang.talent.vo;
 
+import lombok.Data;
+
+@Data
 public class LoginUserDto {
 
+    private String loginUserId;
+
     private String userName;
+
     private String password;
-    private boolean isStudent;
+
+    private int isTeacher;
+
     private String chsName;
 
-    public String getUserName() {
-        return userName;
-    }
+    private String position;
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+    private String department;
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getChsName() {
-        return chsName;
-    }
-
-    public void setChsName(String chsName) {
-        this.chsName = chsName;
-    }
-
-    public boolean isStudent() {
-        return isStudent;
-    }
-
-    public void setStudent(boolean student) {
-        isStudent = student;
-    }
 }

@@ -84,74 +84,72 @@
                 </a>
             </li>
             <!-- 动态菜单 -->
-            <li class="">
-                <a href="javascript:void(0);" class="dropdown-toggle" onclick="changeArrow(this);" >
-                    <span class="menu-text"><i class="fa fa-question-circle" style="margin-right: 5px;"></i>专业信息管理</span>
-                    <b class="arrow fa fa-angle-right"></b>
-                </a>
-                <ul class="submenu nav-hide" style="display: none;">
+            <c:if test="${not empty menu}">
+                <c:forEach items="${menu}" var="m">
                     <li class="">
-                        <a onclick="openIframeUrl('issue_all', '专业信息管理','计算机科学与技术', this);" style="cursor: pointer;">
-                            <span class="menu-text colorselect"><i class="fa fa-list" style="margin-right: 5px;"></i>计算机科学与技术</span>
+                        <a href="javascript:void(0);" class="dropdown-toggle" onclick="changeArrow(this);" >
+                            <span class="menu-text"><i class="${m.icon}" style="margin-right: 5px;"></i>${m.name}</span>
+                            <b class="arrow fa fa-angle-right"></b>
                         </a>
+                        <ul class="submenu nav-hide" style="display: none;">
+                        <c:if test="${not empty m.children}">
+                            <c:forEach items="${m.children}" var="subMenu">
+                                <li class="">
+                                    <a onclick="openIframeUrl(${subMenu.address}, ${m.name},${subMenu.name}, this);" style="cursor: pointer;">
+                                        <span class="menu-text colorselect"><i class="${subMenu.icon}" style="margin-right: 5px;"></i>${subMenu.name}</span>
+                                    </a>
+                                </li>
+                            </c:forEach>
+                        </c:if>
+                        </ul>
                     </li>
-                    <li class="">
-                        <a onclick="openIframeUrl('issue_mine', '专业信息管理','软件工程', this);" style="cursor: pointer;">
-                            <span class="menu-text"><i class="fa fa-transgender" style="margin-right: 5px;"></i>软件工程</span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a onclick="openIframeUrl('issue_mine', '专业信息管理','网路工程', this);" style="cursor: pointer;">
-                            <span class="menu-text"><i class="fa fa-transgender" style="margin-right: 5px;"></i>网路工程</span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a onclick="openIframeUrl('issue_mine', '专业信息管理','网路空间安全', this);" style="cursor: pointer;">
-                            <span class="menu-text"><i class="fa fa-transgender" style="margin-right: 5px;"></i>网路空间安全</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                </c:forEach>
+            </c:if>
 
             <%--课程信息管理--%>
-            <li class="">
-                <a href="javascript:void(0);" class="dropdown-toggle" onclick="changeArrow(this);" >
-                    <span class="menu-text"><i class="fa fa-question-circle" style="margin-right: 5px;"></i>课程信息管理</span>
-                    <b class="arrow fa fa-angle-right"></b>
-                </a>
-                <ul class="submenu nav-hide" style="display: none;">
-                    <li class="">
-                        <a onclick="openIframeUrl('issue_all', '课程信息管理','查看所有问题', this);" style="cursor: pointer;">
-                            <span class="menu-text colorselect"><i class="fa fa-list" style="margin-right: 5px;"></i>查看所有问题</span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a onclick="openIframeUrl('issue_mine', '课程信息管理','与我相关问题', this);" style="cursor: pointer;">
-                            <span class="menu-text"><i class="fa fa-transgender" style="margin-right: 5px;"></i>与我相关问题</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+            <%--<li class="">--%>
+                <%--<a href="javascript:void(0);" class="dropdown-toggle" onclick="changeArrow(this);" >--%>
+                    <%--<span class="menu-text"><i class="fa fa-question-circle" style="margin-right: 5px;"></i>课程信息管理</span>--%>
+                    <%--<b class="arrow fa fa-angle-right"></b>--%>
+                <%--</a>--%>
+                <%--<ul class="submenu nav-hide" style="display: none;">--%>
+                    <%--<li class="">--%>
+                        <%--<a onclick="openIframeUrl('issue_all', '课程信息管理','课程类型管理', this);" style="cursor: pointer;">--%>
+                            <%--<span class="menu-text colorselect"><i class="fa fa-list" style="margin-right: 5px;"></i>课程类型管理</span>--%>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li class="">--%>
+                        <%--<a onclick="openIframeUrl('issue_mine', '课程信息管理','课程管理', this);" style="cursor: pointer;">--%>
+                            <%--<span class="menu-text"><i class="fa fa-transgender" style="margin-right: 5px;"></i>课程管理</span>--%>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                <%--</ul>--%>
+            <%--</li>--%>
 
-            <%--用户信息管理--%>
-            <li class="">
-                <a href="javascript:void(0);" class="dropdown-toggle" onclick="changeArrow(this);" >
-                    <span class="menu-text"><i class="fa fa-question-circle" style="margin-right: 5px;"></i>用户信息管理</span>
-                    <b class="arrow fa fa-angle-right"></b>
-                </a>
-                <ul class="submenu nav-hide" style="display: none;">
-                    <li class="">
-                        <a onclick="openIframeUrl('issue_all', '用户信息管理','学生管理', this);" style="cursor: pointer;">
-                            <span class="menu-text colorselect"><i class="fa fa-list" style="margin-right: 5px;"></i>学生管理</span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a onclick="openIframeUrl('issue_mine', '用户信息管理','教师管理', this);" style="cursor: pointer;">
-                            <span class="menu-text"><i class="fa fa-transgender" style="margin-right: 5px;"></i>教师管理</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+            <%--&lt;%&ndash;用户信息管理&ndash;%&gt;--%>
+            <%--<li class="">--%>
+                <%--<a href="javascript:void(0);" class="dropdown-toggle" onclick="changeArrow(this);" >--%>
+                    <%--<span class="menu-text"><i class="fa fa-question-circle" style="margin-right: 5px;"></i>用户信息管理</span>--%>
+                    <%--<b class="arrow fa fa-angle-right"></b>--%>
+                <%--</a>--%>
+                <%--<ul class="submenu nav-hide" style="display: none;">--%>
+                    <%--<li class="">--%>
+                        <%--<a onclick="openIframeUrl('issue_all', '用户信息管理','学生管理', this);" style="cursor: pointer;">--%>
+                            <%--<span class="menu-text colorselect"><i class="fa fa-list" style="margin-right: 5px;"></i>学生管理</span>--%>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li class="">--%>
+                        <%--<a onclick="openIframeUrl('issue_mine', '用户信息管理','教师管理', this);" style="cursor: pointer;">--%>
+                            <%--<span class="menu-text"><i class="fa fa-transgender" style="margin-right: 5px;"></i>教师管理</span>--%>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                    <%--<li class="">--%>
+                        <%--<a onclick="openIframeUrl('issue_mine', '用户信息管理','个人信息管理', this);" style="cursor: pointer;">--%>
+                            <%--<span class="menu-text"><i class="fa fa-transgender" style="margin-right: 5px;"></i>个人信息管理</span>--%>
+                        <%--</a>--%>
+                    <%--</li>--%>
+                <%--</ul>--%>
+            <%--</li>--%>
         </ul>
         <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
             <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>

@@ -1,13 +1,19 @@
 package com.sanjiang.talent.service.impl;
 
+import com.sanjiang.talent.mapper.LinkMapper;
+import com.sanjiang.talent.mapper.MenuMapper;
 import com.sanjiang.talent.mapper.UserMapper;
+import com.sanjiang.talent.po.Menu;
+import com.sanjiang.talent.po.Role;
 import com.sanjiang.talent.po.User;
 import com.sanjiang.talent.service.UserService;
+import com.sanjiang.talent.vo.MenuDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,6 +22,10 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private LinkMapper linkMapper;
+    @Autowired
+    private MenuMapper menuMapper;
     @Override
     public List<User> getUser() {
         return userMapper.getUsers();
@@ -35,5 +45,23 @@ public class UserServiceImpl implements UserService {
 
             return userByNameAndPwd;
         }
+    }
+
+    @Override
+    public List<MenuDto> getMenuByLoginuserId(String loginUserId) {
+        List<Role> linkRoleByLoginUserId = linkMapper.getLinkRoleByLoginUserId(loginUserId);
+        List<MenuDto> menus = new ArrayList<>();
+        linkRoleByLoginUserId.stream().forEach(o -> {
+            List<MenuDto> menuByRoleId = menuMapper.getFatherMenuByRoleId(o.getId());
+            menuByRoleId.stream().forEach(o1 -> {
+                List<MenuDto> childrenMenuByRoleId = menuMapper.getChildrenMenuByRoleId(o.getId(), o1.getId());
+                o1.setChildren(childrenMenuByRoleId);
+
+            });
+            menus.addAll(menuByRoleId);
+
+        });
+
+        return menus;
     }
 }

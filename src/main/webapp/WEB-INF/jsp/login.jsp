@@ -17,15 +17,13 @@
             url : 'user/login',
             type : "POST",
             data : JSON.stringify({
-                name : name,
+                userName : name,
                 password :password
             }),
             contentType : "application/json",
             dataType:"json",
             success : function (data) {
-                $.messager.alert("提示","登陆成功！","info",function (data) {
-                    location.href = "index";
-                })
+                location.href = "index";
             },
             error : function (data) {
                 AjaxErrorHandler(data);

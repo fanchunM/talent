@@ -1,59 +1,58 @@
 package com.sanjiang.talent.po;
 
+import lombok.Data;
 
+import java.util.Date;
+
+@Data
 public class User {
 
     private String Id;
 
-    private String name;
+    /**
+     * 用户名（学号or工号）
+     */
+    private String userName;
 
+    /**
+     * 中文名
+     */
+    private String chsName;
+
+    /**
+     * 性别
+     */
     private String gender;
 
+    /**
+     * 密码
+     */
     private String password;
 
     /**
-     * true:学生， false:教师
+     * 职位
      */
-    private boolean isStudent;
+    private String position;
+
+    /**
+     * 系别
+     */
+    private String department;
+
+    /**
+     * 0:学生， 1:教师， 2：管理员
+     */
+    private int isTeacher;
+
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+
+    /**
+     * 创建人
+     */
+    private String createBy;
 
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getId() {
-        return Id;
-    }
-
-    public void setId(String id) {
-        Id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public boolean isStudent() {
-        return isStudent;
-    }
-
-    public void setStudent(boolean student) {
-        isStudent = student;
-    }
 }

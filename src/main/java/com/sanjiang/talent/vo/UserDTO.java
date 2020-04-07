@@ -1,43 +1,54 @@
 package com.sanjiang.talent.vo;
 
+import lombok.Data;
+
+@Data
 public class UserDTO {
     private String Id;
 
-    private String name;
+    /**
+     * 用户名（学号or工号）
+     */
+    private String userName;
 
+    /**
+     * 中文名
+     */
+    private String chsName;
+
+    /**
+     * 性别
+     */
     private String gender;
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    /**
+     * 密码
+     */
     private String password;
 
-    public String getId() {
-        return Id;
-    }
+    /**
+     * 职位
+     */
+    private String position;
 
-    public void setId(String id) {
-        Id = id;
-    }
+    /**
+     * 系别
+     */
+    private String department;
 
-    public String getName() {
-        return name;
-    }
+    /**
+     * 0:学生， 1:教师， 2：管理员
+     */
+    private int isTeacher;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    /**
+     * 创建时间
+     */
+    private String createTime;
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    /**
+     * 创建人
+     */
+    private String createBy;
+    private String createByStr;
 }
