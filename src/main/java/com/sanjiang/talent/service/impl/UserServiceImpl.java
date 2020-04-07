@@ -25,4 +25,15 @@ public class UserServiceImpl implements UserService {
     public User getUserById(String id) {
         return userMapper.getUserById(id);
     }
+
+    @Override
+    public User getUserByNameAndPwd(String name, String pwd) {
+        User userByNameAndPwd = userMapper.getUserByNameAndPwd(name, pwd);
+        if (null == userByNameAndPwd) {
+            throw new RuntimeException("用户名或者密码错误");
+        } else {
+
+            return userByNameAndPwd;
+        }
+    }
 }

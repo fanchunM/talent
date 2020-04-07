@@ -25,7 +25,4 @@ mybatis:
 #showSql
 logging:
   level:
-    com:
-      sanjiang:
-        talent:
-          mapper: debug
+    com.sanjiang.talent.mapper: debug

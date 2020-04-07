@@ -1,21 +1,11 @@
-package com.sanjiang.talent.po;
+package com.sanjiang.talent.vo;
 
-
-public class User {
-
+public class UserDTO {
     private String Id;
 
     private String name;
 
     private String gender;
-
-    private String password;
-
-    /**
-     * true:学生， false:教师
-     */
-    private boolean isStudent;
-
 
     public String getPassword() {
         return password;
@@ -24,6 +14,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    private String password;
 
     public String getId() {
         return Id;
@@ -47,13 +39,5 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public boolean isStudent() {
-        return isStudent;
-    }
-
-    public void setStudent(boolean student) {
-        isStudent = student;
     }
 }
