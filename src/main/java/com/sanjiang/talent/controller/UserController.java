@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @SessionAttributes(value= {"loginUserDto"})
 @RequestMapping("/user/")
@@ -29,5 +31,13 @@ public class UserController {
         loginUserDto.setIsTeacher(userByNameAndPwd.getIsTeacher());
         modelMap.addAttribute("loginUserDto", loginUserDto);
         return new ResponseEntity<String>("{\"success\":true}", HttpStatus.OK);
+    }
+
+    @GetMapping("student_manage")
+    public Map<String, Object> getStudentManage(@RequestParam(defaultValue = "1") String page,
+                                                @RequestParam(defaultValue = "20") String rows,
+                                                @RequestParam String type) {
+
+        return userService.getStudentManage(Integer.valueOf(page), Integer.valueOf(rows), type);
     }
 }

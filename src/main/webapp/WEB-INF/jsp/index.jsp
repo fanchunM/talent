@@ -95,8 +95,8 @@
                         <c:if test="${not empty m.children}">
                             <c:forEach items="${m.children}" var="subMenu">
                                 <li class="">
-                                    <a onclick="openIframeUrl(${subMenu.address}, ${m.name},${subMenu.name}, this);" style="cursor: pointer;">
-                                        <span class="menu-text colorselect"><i class="${subMenu.icon}" style="margin-right: 5px;"></i>${subMenu.name}</span>
+                                    <a onclick="openIframeUrl('${subMenu.address}', '${m.name}', '${subMenu.name}', this);" style="cursor: pointer;">
+                                        <span class="menu-text"><i class="${subMenu.icon}" style="margin-right: 5px;"></i>${subMenu.name}</span>
                                     </a>
                                 </li>
                             </c:forEach>

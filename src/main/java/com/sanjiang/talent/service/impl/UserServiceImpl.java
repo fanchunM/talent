@@ -1,20 +1,24 @@
 package com.sanjiang.talent.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.sanjiang.talent.mapper.LinkMapper;
 import com.sanjiang.talent.mapper.MenuMapper;
 import com.sanjiang.talent.mapper.UserMapper;
-import com.sanjiang.talent.po.Menu;
 import com.sanjiang.talent.po.Role;
 import com.sanjiang.talent.po.User;
 import com.sanjiang.talent.service.UserService;
 import com.sanjiang.talent.vo.MenuDto;
+import com.sanjiang.talent.vo.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -59,9 +63,17 @@ public class UserServiceImpl implements UserService {
 
             });
             menus.addAll(menuByRoleId);
-
         });
-
         return menus;
+    }
+
+    @Override
+    public Map<String, Object> getStudentManage(Integer page, Integer rows, String type) {
+        Map<String, Object> map = new HashMap<>(5);
+        List<UserDTO> users = userMapper.getStudentOrTeacher((page-1)*rows, rows, Integer.valueOf(type));
+        Integer studentOrTeacherCount = userMapper.getStudentOrTeacherCount(Integer.valueOf(type));
+        map.put("total", studentOrTeacherCount);
+        map.put("rows", users);
+        return map;
     }
 }

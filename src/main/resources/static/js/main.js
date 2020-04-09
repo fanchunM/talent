@@ -1,7 +1,4 @@
 function openIframeUrl(url, supertitle,title, liself){
-    if("/old_itsm" == url) {
-        window.open("http://10.10.10.88/login.jsp");
-    } else {
         var naviBar = '<i class="fa fa-angle-right" style="font-size: larger;"></i>';
         $('#content_frame').attr('src', url);
         title1="<span style='color: #337ab7;'>"+title+"</span>"
@@ -11,7 +8,6 @@ function openIframeUrl(url, supertitle,title, liself){
         //改变选中字体颜色
         $(".submenu").find("span").removeClass("colorselect");
         $(liself).find("span").addClass("colorselect");
-    }
 }
 
 function openIframeUrlReturn(url, supertitle, title){

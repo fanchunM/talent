@@ -22,4 +22,3 @@
 
 <!-- <link rel="stylesheet" href="resources/fontawesome/css/all.css" /> -->
 <link rel="stylesheet" href="common/fontawesome/css/font-awesome.css"/>
-<link rel="stylesheet" type="text/css" href="common/css/common/common.css">
