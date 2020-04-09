@@ -1,17 +1,3 @@
-function openCreateStudentDialog() {
-    $("#studentForm").form("clear");
-    $("#createStudentDialog").dialog("open");
-}
-
-function deleteStudent() {
-    var checkedItems = $('#dataGridTable').datagrid('getChecked');
-    if (checkedItems.length == 0) {
-        $.messager.alert("提示", "请选择要删除的学生", "info", function () {
-            return;
-        })
-    }
-}
-
 $(function(){
     $('#dataGridTable').datagrid({
         url: 'user/student_manage',

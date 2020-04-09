@@ -7,18 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="js/login.js"></script>
-    <title>test</title>
+    <title>登录</title>
 </head>
 <script type="text/javascript">
     function submit() {
         var name = $("#name").val();
         var password = $("#password").val();
+        var isTeacher = $("#isTeacher").val();
         $.ajax({
             url : 'user/login',
             type : "POST",
             data : JSON.stringify({
                 userName : name,
-                password :password
+                password :password,
+                isTeacher : isTeacher
             }),
             contentType : "application/json",
             dataType:"json",
@@ -43,10 +45,10 @@
                 <input type="password" class="form-control" id="password" style="width: 80%; margin: 0 auto;" placeholder="密码">
             </div>
             <div class="form-group">
-                <select id="sideType" class="form-control" style="width: 80%; margin: 0 auto;">
+                <select id="isTeacher" class="form-control" style="width: 80%; margin: 0 auto;">
                     <option value = "0" selected = "selected">学生</option>
                     <option value = "1">教师</option>
-                    <option value = "1">管理员</option>
+                    <option value = "2">管理员</option>
                 </select>
             </div>
             <button id="login" class="btn btn-success" style="width: 80%;" onclick="submit()" onkeydown="enterLogin();">登&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;录</button>

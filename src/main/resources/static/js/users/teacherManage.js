@@ -1,12 +1,12 @@
-function openCreateStudentDialog() {
-    $("#studentForm").form("clear");
-    $("#createStudentDialog").dialog("open");
+function openCreateTeacherDialog() {
+    $("#teacherForm").form("clear");
+    $("#createTeacherDialog").dialog("open");
 }
 
-function deleteStudent() {
+function deleteTeacher() {
     var checkedItems = $('#dataGridTable').datagrid('getChecked');
     if (checkedItems.length == 0) {
-        $.messager.alert("提示", "请选择要删除的学生", "info", function () {
+        $.messager.alert("提示", "请选择要删除的教师", "info", function () {
             return;
         })
     }
@@ -24,7 +24,7 @@ $(function(){
         pagination: true,
         pageSize: 20,
         queryParams: {
-            type : '0'
+            type : '1'
         },
         loadMsg: '程序处理中，请稍等...',
         columns:[[

@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService {
     private LinkMapper linkMapper;
     @Autowired
     private MenuMapper menuMapper;
+
     @Override
     public List<User> getUser() {
         return userMapper.getUsers();
@@ -41,12 +42,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByNameAndPwd(String name, String pwd) {
-        User userByNameAndPwd = userMapper.getUserByNameAndPwd(name, pwd);
+    public User getUserByNameAndPwdAndIsTeacher(String name, String pwd, int isTeacher) {
+        User userByNameAndPwd = userMapper.getUserByNameAndPwdAndIsTeacher(name, pwd, isTeacher);
         if (null == userByNameAndPwd) {
             throw new RuntimeException("用户名或者密码错误");
         } else {
-
             return userByNameAndPwd;
         }
     }
@@ -60,7 +60,6 @@ public class UserServiceImpl implements UserService {
             menuByRoleId.stream().forEach(o1 -> {
                 List<MenuDto> childrenMenuByRoleId = menuMapper.getChildrenMenuByRoleId(o.getId(), o1.getId());
                 o1.setChildren(childrenMenuByRoleId);
-
             });
             menus.addAll(menuByRoleId);
         });

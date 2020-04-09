@@ -23,15 +23,6 @@ function openIframeUrlReturn(url, supertitle, title){
 }
 
 function logout(){
-    var signOutUrl = '/'
-    try {
-        document.execCommand("ClearAuthenticationCache");
-    }
-    catch (e) {
-        //
-    }
-    finally {
-        window.location.href = signOutUrl;
-    }
+    window.location.href = "logout";
 }
 

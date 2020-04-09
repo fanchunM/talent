@@ -15,8 +15,8 @@ public interface UserMapper{
 
     User getUserById(String id);
 
-    @Select("select * from user where user_name = #{name} and password = #{pwd}")
-    User getUserByNameAndPwd(@Param("name") String name, @Param("pwd") String pwd);
+    @Select("select * from user where user_name = #{name} and password = #{pwd} and is_teacher = #{isTeacher}")
+    User getUserByNameAndPwdAndIsTeacher(@Param("name") String name, @Param("pwd") String pwd, @Param("isTeacher") int isTeacher);
 
     List<UserDTO> getStudentOrTeacher(@Param("currentIndex") Integer currentIndex, @Param("rows") Integer rows, @Param("type") Integer type);
 

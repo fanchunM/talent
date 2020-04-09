@@ -12,7 +12,7 @@ public interface UserService {
 
     User getUserById(String id);
 
-    User getUserByNameAndPwd(String name, String pwd);
+    User getUserByNameAndPwdAndIsTeacher(String name, String pwd, int isTeacher);
 
     List<MenuDto> getMenuByLoginuserId(String loginUserId);
 

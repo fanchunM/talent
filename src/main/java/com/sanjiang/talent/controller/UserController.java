@@ -21,7 +21,7 @@ public class UserController {
 
     @PostMapping("login")
     public ResponseEntity<String> login(@RequestBody UserDTO userDTO, ModelMap modelMap) {
-        User userByNameAndPwd = userService.getUserByNameAndPwd(userDTO.getUserName(), userDTO.getPassword());
+        User userByNameAndPwd = userService.getUserByNameAndPwdAndIsTeacher(userDTO.getUserName(), userDTO.getPassword(), userDTO.getIsTeacher());
         LoginUserDto loginUserDto = new LoginUserDto();
         loginUserDto.setLoginUserId(userByNameAndPwd.getId());
         loginUserDto.setPosition(userByNameAndPwd.getPosition());
