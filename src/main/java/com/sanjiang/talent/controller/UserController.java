@@ -40,4 +40,10 @@ public class UserController {
 
         return userService.getStudentManage(Integer.valueOf(page), Integer.valueOf(rows), type);
     }
+
+    @PostMapping("create_student")
+    public ResponseEntity<String> createStudentOrTeqacher(@RequestBody User user, @ModelAttribute("loginUserDto") LoginUserDto loginUserDto) {
+        userService.createStudentOrTeacher(user, loginUserDto.getLoginUserId());
+        return new ResponseEntity<String>("{\"success\":true}", HttpStatus.OK);
+    }
 }

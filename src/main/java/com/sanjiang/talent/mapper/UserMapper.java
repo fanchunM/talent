@@ -13,7 +13,8 @@ public interface UserMapper{
     @Select("select * from user")
     List<User> getUsers();
 
-    User getUserById(String id);
+    @Select("select * from user where id = #{id}")
+    User getUserById(@Param("id") String id);
 
     @Select("select * from user where user_name = #{name} and password = #{pwd} and is_teacher = #{isTeacher}")
     User getUserByNameAndPwdAndIsTeacher(@Param("name") String name, @Param("pwd") String pwd, @Param("isTeacher") int isTeacher);
@@ -22,5 +23,7 @@ public interface UserMapper{
 
     @Select("select count(*) from user where is_teacher = #{type}")
     Integer getStudentOrTeacherCount(@Param("type") Integer type);
+
+    void createStudentOrTeacher(User user);
 
 }

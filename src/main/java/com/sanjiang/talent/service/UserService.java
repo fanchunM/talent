@@ -24,4 +24,11 @@ public interface UserService {
      * @return
      */
     Map<String, Object> getStudentManage(Integer page, Integer rows, String type);
+
+    /**
+     * 创建学生或者教师
+     * @param user
+     * @param loginUserId
+     */
+    void createStudentOrTeacher(User user, String loginUserId);
 }

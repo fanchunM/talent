@@ -2,6 +2,8 @@ package com.sanjiang.talent.vo;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class UserDTO {
     private String Id;
@@ -44,7 +46,8 @@ public class UserDTO {
     /**
      * 创建时间
      */
-    private String createTime;
+    private Date createTime;
+    private String createTimeStr;
 
     /**
      * 创建人

@@ -31,13 +31,14 @@
 <div id="createStudentDialog" title="新增/修改" class="easyui-dialog" data-options="width:500, height:280, closed:true, buttons:'#createStudentDialogButtons'">
     <div class="container-fluid">
         <form id="studentForm">
+            <input id="isTeacher" name= "isTeacher" type="hidden" value="1">
             <div class=" row add-div">
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
                     用户名
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="" class="textbox add-div-width" />
+                    <input id="userName" name="userName" class="easyui-validatebox add-div-width" data-options="required:true"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -47,7 +48,7 @@
                     中文名
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="" class="textbox add-div-width" />
+                    <input id="chsName" name="chsName" class="easyui-validatebox add-div-width" data-options="required:true"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -57,7 +58,7 @@
                     密码
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="" class="textbox add-div-width" />
+                    <input id="password" name="password" class="easyui-validatebox add-div-width" data-options="required:true"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -67,7 +68,7 @@
                     性别
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="" class="textbox add-div-width" />
+                    <input id="gender" name="gender" class="easyui-validatebox add-div-width" data-options="required:true"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -77,7 +78,7 @@
                     专业
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="" class="textbox add-div-width" />
+                    <input id="position" name="position" class="easyui-validatebox add-div-width" data-options="required:true"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -87,7 +88,7 @@
                     系别
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="" class="textbox add-div-width" />
+                    <input id="department" name="department" class="easyui-validatebox add-div-width" data-options="required:true"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -95,7 +96,7 @@
     </div>
 </div>
 <div id="createStudentDialogButtons">
-    <button class="btn btn-success" onClick="createAddFailureLevelSubmit();" style="margin-right: 5px; margin-left: 5px;">
+    <button class="btn btn-success" onClick="submitStudent();" style="margin-right: 5px; margin-left: 5px;">
         <i class="fa fa-save align-top bigger-125" style="margin-right: 5px;"></i>保存
     </button>
     <button class="btn btn-warning" onClick="$('#createStudentDialog').dialog('close');" >

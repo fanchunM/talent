@@ -4,4 +4,12 @@
     <select id="getStudentOrTeacher"  resultType="com.sanjiang.talent.vo.UserDTO">
       select * from user where is_teacher = #{type} order by create_time desc limit #{currentIndex}, #{rows}
     </select>
+
+    <insert id="createStudentOrTeacher" parameterType="com.sanjiang.talent.po.User">
+        insert into user
+        (id, user_name, chs_name, is_teacher, password, gender, position, department,  create_by, create_time)
+        values (
+        #{id}, #{userName}, #{chsName}, #{isTeacher}, #{password}, #{gender}, #{position}, #{department},#{createBy}, #{createTime}
+        )
+    </insert>
 </mapper>

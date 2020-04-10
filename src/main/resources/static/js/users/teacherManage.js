@@ -34,11 +34,11 @@ $(function(){
                 }},
             {field: 'userName',title: '用户名'},
             {field: 'chsName',title: '中文名'},
+            {field: 'gender',title: '性别'},
             {field: 'password',title: '密码'},
             {field: 'department',title: '系别'},
-            {field: 'createTime',title: '创建时间'},
-            {field: 'createBy',title: '创建人'},
-            {field: 'gender',title: '性别'},
+            {field: 'createTimeStr',title: '创建时间'},
+            {field: 'createByStr',title: '创建人'}
         ]]
     });
 });

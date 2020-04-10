@@ -8,6 +8,7 @@ import com.sanjiang.talent.mapper.UserMapper;
 import com.sanjiang.talent.po.Role;
 import com.sanjiang.talent.po.User;
 import com.sanjiang.talent.service.UserService;
+import com.sanjiang.talent.util.VGUtility;
 import com.sanjiang.talent.vo.MenuDto;
 import com.sanjiang.talent.vo.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service
@@ -70,9 +68,21 @@ public class UserServiceImpl implements UserService {
     public Map<String, Object> getStudentManage(Integer page, Integer rows, String type) {
         Map<String, Object> map = new HashMap<>(5);
         List<UserDTO> users = userMapper.getStudentOrTeacher((page-1)*rows, rows, Integer.valueOf(type));
+        users.stream().forEach(o -> {
+            o.setCreateByStr(userMapper.getUserById(o.getCreateBy()).getChsName());
+            o.setCreateTimeStr(VGUtility.toDateStr(o.getCreateTime(), "yyyy-MM-dd HH:mm:ss"));
+        });
         Integer studentOrTeacherCount = userMapper.getStudentOrTeacherCount(Integer.valueOf(type));
         map.put("total", studentOrTeacherCount);
         map.put("rows", users);
         return map;
+    }
+
+    @Override
+    public void createStudentOrTeacher(User user, String loginUserId) {
+        user.setId(UUID.randomUUID().toString().replace("-", ""));
+        user.setCreateBy(loginUserId);
+        user.setCreateTime(new Date());
+        userMapper.createStudentOrTeacher(user);
     }
 }
