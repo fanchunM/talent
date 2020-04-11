@@ -6,10 +6,10 @@
     </select>
 
     <insert id="createStudentOrTeacher" parameterType="com.sanjiang.talent.po.User">
-        insert into user
-        (id, user_name, chs_name, is_teacher, password, gender, position, department,  create_by, create_time)
-        values (
-        #{id}, #{userName}, #{chsName}, #{isTeacher}, #{password}, #{gender}, #{position}, #{department},#{createBy}, #{createTime}
-        )
+        insert into user(id, user_name, chs_name, is_teacher, password, gender, position, department,  create_by, create_time)values(#{id}, #{userName}, #{chsName}, #{isTeacher}, #{password}, #{gender}, #{position}, #{department},#{createBy}, #{createTime})
     </insert>
+
+    <delete id="deleteStudentOrTeacher">
+        delete from user where id in<foreach collection="idList" item="idList" open="(" separator="," close=")">#{idList,jdbcType=VARCHAR}</foreach>
+    </delete>
 </mapper>

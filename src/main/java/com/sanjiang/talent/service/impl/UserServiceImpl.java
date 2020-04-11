@@ -80,9 +80,28 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createStudentOrTeacher(User user, String loginUserId) {
-        user.setId(UUID.randomUUID().toString().replace("-", ""));
-        user.setCreateBy(loginUserId);
-        user.setCreateTime(new Date());
-        userMapper.createStudentOrTeacher(user);
+        if (!VGUtility.isEmpty(user.getId())) {
+            userMapper.updateStudentOrTeacher(user);
+        } else {
+            user.setId(UUID.randomUUID().toString().replace("-", ""));
+            user.setCreateBy(loginUserId);
+            user.setCreateTime(new Date());
+            userMapper.createStudentOrTeacher(user);
+        }
+    }
+
+    @Override
+    public void deleteStudentOrTeacher(List<String> ids) {
+        userMapper.deleteStudentOrTeacher(ids);
+    }
+
+    @Override
+    public void updatePwd(String loginUserId, String oldPwd, String newPwd) {
+        User userById = userMapper.getUserById(loginUserId);
+        if (!userById.getPassword().equals(oldPwd)) {
+            throw new RuntimeException("原密码输入错误，请重新输入！");
+        } else {
+            userMapper.updatePwd(loginUserId, newPwd);
+        }
     }
 }

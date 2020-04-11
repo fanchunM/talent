@@ -31,4 +31,18 @@ public interface UserService {
      * @param loginUserId
      */
     void createStudentOrTeacher(User user, String loginUserId);
+
+    /**
+     * 删除学生或者教师
+     * @param ids
+     */
+    void deleteStudentOrTeacher(List<String> ids);
+
+    /**
+     * 修改密码
+     * @param loginUserId
+     * @param oldPwd
+     * @param newPwd
+     */
+    void updatePwd(String loginUserId, String oldPwd, String newPwd);
 }

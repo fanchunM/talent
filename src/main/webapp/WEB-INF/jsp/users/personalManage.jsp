@@ -12,44 +12,46 @@
 <body>
 <div  class="easyui-layout" fit="true">
     <div data-options="region:'center',border:false" style="font-size: large">
-        <div class="row" style="text-align: center">
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-right">
-                原密码:
+        <form id="pwdForm">
+            <div class="row" style="text-align: center">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-right">
+                    原密码:
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="oldPwd" type="password" class="textbox">
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                <input class="textbox" value="">
-            </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-        </div>
 
-        <div class="row" style="text-align: center;margin-top: 20px;">
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-right">
-                新密码:
+            <div class="row" style="text-align: center;margin-top: 20px;">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-right">
+                    新密码:
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="newPwd" type="password" class="textbox">
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                <input class="textbox" value="">
+            <div class="row" style="text-align: center;margin-top: 20px;">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-right">
+                    再次输入:
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="multiPwd" type="password" class="textbox">
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-        </div>
-        <div class="row" style="text-align: center;margin-top: 20px;">
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-right">
-                再次输入:
+            <div class="row" style="text-align: center;margin-top: 20px;">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                    <input type="button" class="btn btn-success btn-lg" onclick="updatePwd();" value="保存"/>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                <input class="textbox" value="">
-            </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-        </div>
-        <div class="row" style="text-align: center;margin-top: 20px;">
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
-                <button type="button" class="btn btn-success btn-lg">保存</button>
-            </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-        </div>
+        </form>
     </div>
 </div>
 </body>

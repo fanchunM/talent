@@ -8,6 +8,15 @@
     <script type="text/javascript" src="js/users/teacherManage.js"></script>
 </head>
 <style type="text/css">
+    .add-div {
+        margin-top: 10px;
+    }
+    .add-div-width {
+        width:100%;
+    }
+    .add-div-font {
+        font-size: 16px;
+    }
 </style>
 <body>
 <div  class="easyui-layout" fit="true">
@@ -19,15 +28,75 @@
         <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteTeacher();">删除</a>
     </div>
 </div>
-<div id="createTeacherDialog" title="新增/修改" class="easyui-dialog" data-options="width:650, height:350, closed:true, buttons:'#createTeacherDialogButtons'">
+<div id="createTeacherDialog" title="新增/修改" class="easyui-dialog" data-options="width:500, height:280, closed:true, buttons:'#createTeacherDialogButtons'">
     <div class="container-fluid">
         <form id="teacherForm">
-
+            <input id="id" name="id" type="hidden" >
+            <div class=" row add-div">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
+                    用户名
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="userName" name="userName" class="easyui-validatebox add-div-width" data-options="required:true"/>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+            </div>
+            <div class=" row add-div">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
+                    中文名
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="chsName" name="chsName" class="easyui-validatebox add-div-width" data-options="required:true"/>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+            </div>
+            <div class=" row add-div">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
+                    密码
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="password" name="password" class="easyui-validatebox add-div-width" data-options="required:true"/>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+            </div>
+            <div class=" row add-div">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
+                    性别
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="gender" name="gender" class="easyui-validatebox add-div-width" data-options="required:true"/>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+            </div>
+            <div class=" row add-div">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
+                    职位
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="position" name="position" class="easyui-validatebox add-div-width" data-options="required:true"/>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+            </div>
+            <div class=" row add-div">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
+                    系别
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="department" name="department" class="easyui-validatebox add-div-width" data-options="required:true"/>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+            </div>
         </form>
     </div>
 </div>
 <div id="createTeacherDialogButtons">
-    <button class="btn btn-success" onClick="createAddFailureLevelSubmit();" style="margin-right: 5px; margin-left: 5px;">
+    <button class="btn btn-success" onClick="submitTeacher();" style="margin-right: 5px; margin-left: 5px;">
         <i class="fa fa-save align-top bigger-125" style="margin-right: 5px;"></i>保存
     </button>
     <button class="btn btn-warning" onClick="$('#createTeacherDialog').dialog('close');" >

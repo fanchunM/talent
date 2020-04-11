@@ -31,7 +31,7 @@
 <div id="createStudentDialog" title="新增/修改" class="easyui-dialog" data-options="width:500, height:280, closed:true, buttons:'#createStudentDialogButtons'">
     <div class="container-fluid">
         <form id="studentForm">
-            <input id="isTeacher" name= "isTeacher" type="hidden" value="1">
+            <input id="id" name="id" type="hidden" >
             <div class=" row add-div">
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
