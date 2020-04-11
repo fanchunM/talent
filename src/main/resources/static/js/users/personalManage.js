@@ -21,7 +21,7 @@ function updatePwd() {
             dataType : "json",
             success : function (data) {
                 $.messager.alert("提示", "修改成功！请重新登录", "info", function () {
-                    window.location.href = "logout";
+                    top.location.href = "logout";
                 })
             },
             error : function (data) {
