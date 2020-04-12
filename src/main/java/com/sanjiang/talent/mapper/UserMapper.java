@@ -12,8 +12,8 @@ import java.util.List;
 
 @Repository
 public interface UserMapper{
-    @Select("select * from user")
-    List<User> getUsers();
+    @Select("select * from user where chs_name like '%${q}%'")
+    List<User> getUsers(@Param("q") String q);
 
     @Select("select * from user where id = #{id}")
     User getUserById(@Param("id") String id);

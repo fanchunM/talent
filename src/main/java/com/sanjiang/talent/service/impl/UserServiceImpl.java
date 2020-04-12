@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sanjiang.talent.mapper.LinkMapper;
 import com.sanjiang.talent.mapper.MenuMapper;
+import com.sanjiang.talent.mapper.RoleMapper;
 import com.sanjiang.talent.mapper.UserMapper;
 import com.sanjiang.talent.po.Role;
 import com.sanjiang.talent.po.User;
@@ -28,10 +29,12 @@ public class UserServiceImpl implements UserService {
     private LinkMapper linkMapper;
     @Autowired
     private MenuMapper menuMapper;
+    @Autowired
+    private RoleMapper roleMapper;
 
     @Override
-    public List<User> getUser() {
-        return userMapper.getUsers();
+    public List<User> getUser(String q) {
+        return userMapper.getUsers(q);
     }
 
     @Override
@@ -103,5 +106,30 @@ public class UserServiceImpl implements UserService {
         } else {
             userMapper.updatePwd(loginUserId, newPwd);
         }
+    }
+
+    @Override
+    public Map<String, Object> getRoleManage(Integer page, Integer rows) {
+        Map<String, Object> map = new HashMap<>(5);
+        List<Role> roles = roleMapper.getRoleManage((page-1)*rows, rows);
+        Integer roleCount = roleMapper.getRoleCount();
+        map.put("total", roleCount);
+        map.put("rows", roles);
+        return map;
+    }
+
+    @Override
+    public void createRole(Role role) {
+        if (!VGUtility.isEmpty(role.getId())) {
+            roleMapper.updateRole(role);
+        } else {
+            role.setId(UUID.randomUUID().toString().replace("-", ""));
+            roleMapper.createRole(role);
+        }
+    }
+
+    @Override
+    public void deleteRole(List<String> ids) {
+        roleMapper.deleteRole(ids);
     }
 }

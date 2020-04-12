@@ -1,5 +1,6 @@
 package com.sanjiang.talent.service;
 
+import com.sanjiang.talent.po.Role;
 import com.sanjiang.talent.po.User;
 import com.sanjiang.talent.vo.MenuDto;
 
@@ -8,7 +9,7 @@ import java.util.Map;
 
 public interface UserService {
 
-    List<User> getUser();
+    List<User> getUser(String q);
 
     User getUserById(String id);
 
@@ -45,4 +46,23 @@ public interface UserService {
      * @param newPwd
      */
     void updatePwd(String loginUserId, String oldPwd, String newPwd);
+
+    /**
+     * 获取权限列表
+     * @param page
+     * @param rows
+     * @return
+     */
+    Map<String, Object> getRoleManage(Integer page, Integer rows);
+
+    /**
+     * 创建角色
+     */
+    void createRole(Role role);
+
+    /**
+     * 删除角色
+     * @param ids
+     */
+    void deleteRole(List<String> ids);
 }
