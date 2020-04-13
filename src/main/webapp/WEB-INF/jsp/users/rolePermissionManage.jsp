@@ -57,28 +57,33 @@
 </div>
 
 <%--添加用户--%>
-<div id="addUserDialog" title="添加用户" class="easyui-dialog" data-options="width:500, height:150, closed:true, buttons:'#addUserDialogButtons'">
-    <div class="container-fluid">
-            <div class=" row add-div">
-                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-                <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
-                    选择用户
-                </div>
-                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="userId" class="easyui-combobox" data-options="url:'user/get_user',method:'GET', mode :'remote',
-                    valueField: 'value',
-                    textField: 'text'"/>
-                </div>
-                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-            </div>
+<div id="addUserDialog" title="添加用户" class="easyui-dialog" data-options="width:500, height:500, closed:true, buttons:'#addUserDialogButtons'">
+    <input type="hidden" name="roleId">
+    <table id="roleUserDataGridTable"></table>
+    <div id="roleUserDataGridTableButtons" style="padding-left: 5px;">
+        <input id="userId" class="easyui-combobox" data-options="url:'user/get_user',method:'GET', mode :'remote',valueField: 'value',textField: 'text'"/>
+        <a href="javascript:void(0);" class="btn btn-info btn-sm" onclick="addRoleUser();">新增</a>
     </div>
+
 </div>
 <div id="addUserDialogButtons">
-    <button class="btn btn-success" onClick="submitRole();" style="margin-right: 5px; margin-left: 5px;">
-        <i class="fa fa-save align-top bigger-125" style="margin-right: 5px;"></i>保存
-    </button>
     <button class="btn btn-warning" onClick="$('#addUserDialog').dialog('close');" >
-        <i class="fa fa-times bigger-125" style="margin-right: 5px;"></i>关闭
+        <i class="fa fa-times smaller-90" style="margin-right: 5px;"></i>关闭
+    </button>
+</div>
+
+<%--添加菜单--%>
+<div id="addMenuDialog" title="添加菜单" class="easyui-dialog" data-options="width:500, height:500, closed:true, buttons:'#addUserDialogButtons'">
+    <input type="hidden" name="roleId">
+    <ul id="menuTree" class="easyui-tree">
+    </ul>
+</div>
+<div id="addUserDialogButtons">
+    <button class="btn btn-success" onClick="submitRoleMenu();" style="margin-right: 5px; margin-left: 5px;">
+        <i class="fa fa-save align-top bigger-125" style="margin-right: 5px;"></i>变更
+    </button>
+    <button class="btn btn-warning" onClick="$('#addMenuDialog').dialog('close');" >
+        <i class="fa fa-times smaller-90" style="margin-right: 5px;"></i>关闭
     </button>
 </div>
 </body>

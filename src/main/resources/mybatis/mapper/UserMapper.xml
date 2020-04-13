@@ -12,4 +12,9 @@
     <delete id="deleteStudentOrTeacher">
         delete from user where id in<foreach collection="idList" item="idList" open="(" separator="," close=")">#{idList,jdbcType=VARCHAR}</foreach>
     </delete>
+
+    <select id="getRoleUser"  resultType="com.sanjiang.talent.vo.UserDTO">
+      select * from user where id in (select link_id from link where role_id = #{roleId} and type = 1) limit #{currentIndex}, #{rows}
+    </select>
+
 </mapper>

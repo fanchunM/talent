@@ -1,11 +1,11 @@
 package com.sanjiang.talent.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import com.alibaba.fastjson.JSON;
 import com.sanjiang.talent.mapper.LinkMapper;
 import com.sanjiang.talent.mapper.MenuMapper;
 import com.sanjiang.talent.mapper.RoleMapper;
 import com.sanjiang.talent.mapper.UserMapper;
+import com.sanjiang.talent.po.Link;
 import com.sanjiang.talent.po.Role;
 import com.sanjiang.talent.po.User;
 import com.sanjiang.talent.service.UserService;
@@ -54,16 +54,32 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<MenuDto> getMenuByLoginuserId(String loginUserId) {
-        List<Role> linkRoleByLoginUserId = linkMapper.getLinkRoleByLoginUserId(loginUserId);
+        List<Link> linkRoleByLoginUserId = linkMapper.getLinkRoleByLoginUserId(loginUserId);
         List<MenuDto> menus = new ArrayList<>();
+        Set<String> setFather = new HashSet<>();
+        Set<String> setSon = new HashSet<>();
         linkRoleByLoginUserId.stream().forEach(o -> {
-            List<MenuDto> menuByRoleId = menuMapper.getFatherMenuByRoleId(o.getId());
+            List<MenuDto> menuByRoleId = menuMapper.getFatherMenuByRoleId(o.getRoleId());
             menuByRoleId.stream().forEach(o1 -> {
-                List<MenuDto> childrenMenuByRoleId = menuMapper.getChildrenMenuByRoleId(o.getId(), o1.getId());
-                o1.setChildren(childrenMenuByRoleId);
+                setFather.add(o1.getId());
+                List<MenuDto> childrenMenuByRoleId = menuMapper.getChildrenMenuByRoleId(o.getRoleId(), o1.getId());
+                childrenMenuByRoleId.stream().forEach(o2 -> {
+                    setSon.add(o2.getId());
+                });
             });
-            menus.addAll(menuByRoleId);
         });
+        for (String s : setFather) {
+            MenuDto menuById = menuMapper.getMenuById(s);
+            List<MenuDto> childrenMenu = menuMapper.getChildrenMenu(s);
+            Iterator<MenuDto> iterator = childrenMenu.iterator();
+            while (iterator.hasNext()) {
+                if (!setSon.contains(iterator.next().getId())) {
+                    iterator.remove();
+                }
+            }
+            menuById.setChildren(childrenMenu);
+            menus.add(menuById);
+        }
         return menus;
     }
 
@@ -131,5 +147,61 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteRole(List<String> ids) {
         roleMapper.deleteRole(ids);
+    }
+
+    @Override
+    public Map<String, Object> getRoleUser(Integer page, Integer rows, String roleId) {
+        Map<String, Object> map = new HashMap<>(5);
+        List<UserDTO> users = userMapper.getRoleUser((page-1)*rows, rows, roleId);
+        Integer roleUserCount = userMapper.getRoleUserCount(roleId);
+        map.put("total", roleUserCount);
+        map.put("rows", users);
+        return map;
+    }
+
+    @Override
+    public void createRoleUser(String roleId, String userId) {
+        userMapper.createRoleUser(UUID.randomUUID().toString().replace("-", ""), roleId, userId);
+    }
+
+    @Override
+    public List<MenuDto> getRoleMenu(String roleId) {
+        List<String> roleMenu = menuMapper.getRoleMenu(roleId);
+        List<MenuDto> menus = new ArrayList<>();
+        List<MenuDto> menuByRoleId = menuMapper.getFatherMenu();
+        menuByRoleId.stream().forEach(o -> {
+            o.setText(o.getName());
+            List<MenuDto> childrenMenuByRoleId = menuMapper.getChildrenMenu(o.getId());
+            childrenMenuByRoleId.stream().forEach(o1 -> {
+                o1.setText(o1.getName());
+                if (roleMenu.contains(o1.getId())) {
+                    o1.setChecked(true);
+                } else {
+                    o1.setChecked(false);
+                }
+            });
+            o.setChildren(childrenMenuByRoleId);
+        });
+        menus.addAll(menuByRoleId);
+        return menus;
+    }
+
+    @Override
+    public void addRoleMenu(String roleId, String menuIdArray) {
+        linkMapper.deleteRoleMenu(roleId);
+        List<String> strings = JSON.parseArray(menuIdArray, String.class);
+        strings.stream().forEach(o -> {
+            Link link = new Link();
+            link.setId(UUID.randomUUID().toString().replace("-", ""));
+            link.setRoleId(roleId);
+            link.setLinkId(o);
+            link.setType(2);
+            linkMapper.addRoleMenu(link);
+        });
+    }
+
+    @Override
+    public int deleteRoleUser(String roleId, String userId) {
+        return linkMapper.deleteRoleUser(roleId, userId);
     }
 }

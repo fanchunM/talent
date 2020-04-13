@@ -65,4 +65,41 @@ public interface UserService {
      * @param ids
      */
     void deleteRole(List<String> ids);
+
+    /**
+     * 获取角色用户
+     * @param page
+     * @param rows
+     * @param roleId
+     */
+    Map<String, Object> getRoleUser(Integer page, Integer rows, String roleId);
+
+    /**
+     * 创建角色用户
+     * @param roleId
+     * @param userId
+     */
+    void createRoleUser(String roleId, String userId);
+
+    /**
+     * 获取角色菜单
+     * @param roleId
+     * @return
+     */
+    List<MenuDto> getRoleMenu(String roleId);
+
+    /**
+     * 添加角色菜单
+     * @param roleId
+     * @param menuIdArray
+     */
+    void addRoleMenu(String roleId, String menuIdArray);
+
+    /**
+     * 删除角色用户
+     * @param roleId
+     * @param userId
+     * @return
+     */
+    int deleteRoleUser(String roleId, String userId);
 }

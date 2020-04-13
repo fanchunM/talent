@@ -5,6 +5,7 @@ import com.sanjiang.talent.po.User;
 import com.sanjiang.talent.service.UserService;
 import com.sanjiang.talent.vo.CommonComboDto;
 import com.sanjiang.talent.vo.LoginUserDto;
+import com.sanjiang.talent.vo.MenuDto;
 import com.sanjiang.talent.vo.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,4 +100,37 @@ public class UserController {
         return commonComboDtos;
     }
 
+    @GetMapping("get_role_user")
+    public Map<String, Object> getRoleUser(@RequestParam(defaultValue = "1") String page,
+                                           @RequestParam(defaultValue = "20") String rows,
+                                           @RequestParam String roleId) {
+
+        return userService.getRoleUser(Integer.valueOf(page), Integer.valueOf(rows), roleId);
+    }
+
+    @PostMapping("add_role_user")
+    public ResponseEntity<String> createRoleUser(@RequestParam String roleId, @RequestParam String userId) {
+        userService.createRoleUser(roleId, userId);
+        return new ResponseEntity<String>("{\"success\":true}", HttpStatus.OK);
+    }
+
+    @GetMapping("get_role_menu")
+    public List<MenuDto> getRoleMenu(@RequestParam String roleId) {
+        return userService.getRoleMenu(roleId);
+    }
+
+    @PostMapping("add_role_menu")
+    public ResponseEntity<String> addRoleMenu(@RequestParam String roleId,
+                                              @RequestParam String menuIdArray) {
+
+        userService.addRoleMenu(roleId, menuIdArray);
+        return new ResponseEntity<String>("{\"success\":true}", HttpStatus.OK);
+    }
+
+    @PostMapping("delete_role_user")
+    public ResponseEntity<String> deleteRoleUser(@RequestParam String roleId,
+                                                 @RequestParam String userId) {
+        userService.deleteRoleUser(roleId, userId);
+        return new ResponseEntity<String>("{\"success\":true}", HttpStatus.OK);
+    }
 }

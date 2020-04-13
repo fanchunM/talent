@@ -14,6 +14,8 @@ public class MenuDto {
      * 菜单名称
      */
     private String name;
+    private String text;
+    private Boolean checked;
 
     /**
      * 父级菜单

@@ -2,7 +2,7 @@ package com.sanjiang.talent.mapper;
 
 import com.sanjiang.talent.po.User;
 import com.sanjiang.talent.vo.UserDTO;
-import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -36,4 +36,12 @@ public interface UserMapper{
     @Update("update user set password = #{newPwd} where id = #{loginUserId}")
     int updatePwd(@Param("loginUserId") String loginUserId, @Param("newPwd") String newPwd);
 
+
+    List<UserDTO> getRoleUser(@Param("currentIndex") Integer currentIndex, @Param("rows") Integer rows, @Param("roleId") String roleId);
+
+    @Select("select count(*) from link where role_id = #{roleId} and type = 1")
+    Integer getRoleUserCount(@Param("roleId") String roleId);
+
+    @Insert("insert into link (id, role_id, link_id, type) values(#{id}, #{roleId}, #{userId}, 1)")
+    int createRoleUser(@Param("id") String id, @Param("roleId") String roleId, @Param("userId") String userId);
 }
