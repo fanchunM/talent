@@ -2,6 +2,8 @@ package com.sanjiang.talent.controller;
 
 import com.sanjiang.talent.po.Role;
 import com.sanjiang.talent.po.User;
+import com.sanjiang.talent.po.course.Moudle;
+import com.sanjiang.talent.po.course.Platform;
 import com.sanjiang.talent.service.UserService;
 import com.sanjiang.talent.vo.CommonComboDto;
 import com.sanjiang.talent.vo.LoginUserDto;
@@ -133,4 +135,59 @@ public class UserController {
         userService.deleteRoleUser(roleId, userId);
         return new ResponseEntity<String>("{\"success\":true}", HttpStatus.OK);
     }
+
+    @GetMapping("platform_manage")
+    public Map<String, Object> getPlatformManage(@RequestParam(defaultValue = "1") String page,
+                                                 @RequestParam(defaultValue = "20") String rows) {
+
+        return userService.getPlatformManage(Integer.valueOf(page), Integer.valueOf(rows));
+    }
+
+    @PostMapping("create_platform")
+    public ResponseEntity<String> createPlatform(@RequestBody Platform platform) {
+        userService.createPlatform(platform);
+        return new ResponseEntity<String>("{\"success\":true}", HttpStatus.OK);
+    }
+
+    @PostMapping("delete_platform")
+    public ResponseEntity<String> deletePlatform(@RequestBody List<String> ids) {
+        log.info("delete platform where id in {}", ids);
+        userService.deletePlatform(ids);
+        return new ResponseEntity<String>("{\"success\":true}", HttpStatus.OK);
+    }
+
+    @GetMapping("moudle_manage")
+    public Map<String, Object> getMoudleManage(@RequestParam(defaultValue = "1") String page,
+                                                 @RequestParam(defaultValue = "20") String rows) {
+
+        return userService.getMoudleManage(Integer.valueOf(page), Integer.valueOf(rows));
+    }
+
+    @PostMapping("create_moudle")
+    public ResponseEntity<String> createMoudle(@RequestBody Moudle moudle) {
+        userService.createMoudle(moudle);
+        return new ResponseEntity<String>("{\"success\":true}", HttpStatus.OK);
+    }
+
+    @PostMapping("delete_moudle")
+    public ResponseEntity<String> deleteMoudle(@RequestBody List<String> ids) {
+        log.info("delete moudle where id in {}", ids);
+        userService.deleteMoudle(ids);
+        return new ResponseEntity<String>("{\"success\":true}", HttpStatus.OK);
+    }
+
+
+    @GetMapping("get_platform")
+    public List<CommonComboDto> getPlatformCombobox(@RequestParam(defaultValue = "") String q) {
+        List<Platform> platform = userService.getPlatform(q);
+        List<CommonComboDto> commonComboDtos = new ArrayList<>();
+        platform.stream().forEach(o -> {
+            CommonComboDto commonComboDto = new CommonComboDto();
+            commonComboDto.setValue(o.getId());
+            commonComboDto.setText(o.getName());
+            commonComboDtos.add(commonComboDto);
+        });
+        return commonComboDtos;
+    }
+
 }

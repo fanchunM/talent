@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sanjiang.talent.mapper.PlatformMapper">
+    <select id="getPlatformManage"  resultType="com.sanjiang.talent.po.course.Platform">
+      select * from platform limit #{currentIndex}, #{rows}
+    </select>
+
+    <insert id="createPlatform" parameterType="com.sanjiang.talent.po.course.Platform">
+        insert into platform(id, name) values(#{id}, #{name})
+    </insert>
+
+    <delete id="deletePlatform">
+        delete from platform where id in<foreach collection="idList" item="idList" open="(" separator="," close=")">#{idList,jdbcType=VARCHAR}</foreach>
+    </delete>
+</mapper>

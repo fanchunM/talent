@@ -2,6 +2,8 @@ package com.sanjiang.talent.service;
 
 import com.sanjiang.talent.po.Role;
 import com.sanjiang.talent.po.User;
+import com.sanjiang.talent.po.course.Moudle;
+import com.sanjiang.talent.po.course.Platform;
 import com.sanjiang.talent.vo.MenuDto;
 
 import java.util.List;
@@ -102,4 +104,47 @@ public interface UserService {
      * @return
      */
     int deleteRoleUser(String roleId, String userId);
+
+    /**
+     * 获取平台列表
+     * @param page
+     * @param rows
+     * @return
+     */
+    Map<String, Object> getPlatformManage(Integer page, Integer rows);
+
+    /**
+     * 获取模块列表
+     * @param page
+     * @param rows
+     * @return
+     */
+    Map<String, Object> getMoudleManage(Integer page, Integer rows);
+
+    /**
+     * 新增平台
+     * @param platform
+     */
+    void createPlatform(Platform platform);
+
+    /**
+     * 删除平台
+     * @param ids
+     */
+    void deletePlatform(List<String> ids);
+
+
+    /**
+     * 新增模块
+     * @param moudle
+     */
+    void createMoudle(Moudle moudle);
+
+    /**
+     * 删除模块
+     * @param ids
+     */
+    void deleteMoudle(List<String> ids);
+
+    List<Platform> getPlatform(String q);
 }

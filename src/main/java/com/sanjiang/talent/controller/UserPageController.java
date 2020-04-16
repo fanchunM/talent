@@ -66,4 +66,16 @@ public class UserPageController {
         session.removeAttribute("loginUserDto");
         return "redirect:login";
     }
+
+    @GetMapping("platform_manage")
+    public String enterPlatformManagePage(@ModelAttribute("loginUserDto") LoginUserDto loginUserDto) {
+        log.info("ENTER PLATFORM MANAGE PAGE");
+        return "users/platformManage";
+    }
+
+    @GetMapping("moudle_manage")
+    public String enterMoudleManagePage(@ModelAttribute("loginUserDto") LoginUserDto loginUserDto) {
+        log.info("ENTER MOUDLE MANAGE PAGE");
+        return "users/moudleManage";
+    }
 }

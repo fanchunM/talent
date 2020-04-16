@@ -1,13 +1,12 @@
 package com.sanjiang.talent.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.sanjiang.talent.mapper.LinkMapper;
-import com.sanjiang.talent.mapper.MenuMapper;
-import com.sanjiang.talent.mapper.RoleMapper;
-import com.sanjiang.talent.mapper.UserMapper;
+import com.sanjiang.talent.mapper.*;
 import com.sanjiang.talent.po.Link;
 import com.sanjiang.talent.po.Role;
 import com.sanjiang.talent.po.User;
+import com.sanjiang.talent.po.course.Moudle;
+import com.sanjiang.talent.po.course.Platform;
 import com.sanjiang.talent.service.UserService;
 import com.sanjiang.talent.util.VGUtility;
 import com.sanjiang.talent.vo.MenuDto;
@@ -31,6 +30,10 @@ public class UserServiceImpl implements UserService {
     private MenuMapper menuMapper;
     @Autowired
     private RoleMapper roleMapper;
+    @Autowired
+    private PlatformMapper platformMapper;
+    @Autowired
+    private MoudleMapper moudleMapper;
 
     @Override
     public List<User> getUser(String q) {
@@ -203,5 +206,69 @@ public class UserServiceImpl implements UserService {
     @Override
     public int deleteRoleUser(String roleId, String userId) {
         return linkMapper.deleteRoleUser(roleId, userId);
+    }
+
+    @Override
+    public Map<String, Object> getPlatformManage(Integer page, Integer rows) {
+        Map<String, Object> map = new HashMap<>(5);
+        List<Platform> roles = platformMapper.getPlatformManage((page-1)*rows, rows);
+        Integer platformCount = platformMapper.getPlatformCount();
+        map.put("total", platformCount);
+        map.put("rows", roles);
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> getMoudleManage(Integer page, Integer rows) {
+        Map<String, Object> map = new HashMap<>(5);
+        List<Moudle> moudles = moudleMapper.getMoudleManage((page-1)*rows, rows);
+        moudles.stream().forEach(o -> {
+            o.setPlatformName(platformMapper.getPlatformById(o.getPlatformId()).getName());
+        });
+        Integer moudleCount = moudleMapper.getMoudleCount();
+        map.put("total", moudleCount);
+        map.put("rows", moudles);
+        return map;
+    }
+
+    @Override
+    public void createPlatform(Platform platform) {
+        if (!VGUtility.isEmpty(platform.getId())) {
+            platformMapper.updatePlatform(platform);
+        } else {
+            platform.setId(UUID.randomUUID().toString().replace("-", ""));
+            platformMapper.createPlatform(platform);
+        }
+    }
+
+    @Override
+    public void deletePlatform(List<String> ids) {
+        ids.stream().forEach( o -> {
+            List<Moudle> moudleByPlatform = moudleMapper.getMoudleByPlatform(o);
+            if (moudleByPlatform.size() > 0) {
+                throw new RuntimeException("平台中有关联的模块，请先删除模块！");
+            }
+        });
+        platformMapper.deletePlatform(ids);
+    }
+
+    @Override
+    public void createMoudle(Moudle moudle) {
+        if (!VGUtility.isEmpty(moudle.getId())) {
+            moudleMapper.updateMoudle(moudle);
+        } else {
+            moudle.setId(UUID.randomUUID().toString().replace("-", ""));
+            moudleMapper.createMoudle(moudle);
+        }
+    }
+
+    @Override
+    public void deleteMoudle(List<String> ids) {
+        moudleMapper.deleteMoudle(ids);
+    }
+
+    @Override
+    public List<Platform> getPlatform(String q) {
+        return platformMapper.getPlatform(q);
     }
 }
