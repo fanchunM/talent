@@ -146,5 +146,17 @@ public interface UserService {
      */
     void deleteMoudle(List<String> ids);
 
+    /**
+     * 获取平台的combobox
+     * @param q
+     * @return
+     */
     List<Platform> getPlatform(String q);
+
+    /**
+     * 获取模块的combobox
+     * @param q
+     * @return
+     */
+    List<Moudle> getMoudle(String q);
 }

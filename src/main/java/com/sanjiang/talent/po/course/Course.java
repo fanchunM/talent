@@ -25,5 +25,17 @@ public class Course {
      */
     private String moudleId;
 
+    /**
+     * 平台名称
+     */
+    private String platformName;
+
+    /**
+     * 模块名称
+     */
+    private String moudleName;
+
+
+
 
 }

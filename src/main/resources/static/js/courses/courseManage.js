@@ -1,30 +1,32 @@
 /**
- * 新增学生
+ * 新增课程
  */
-function submitMoudle() {
-    var id = $("#createMoudleDialog input[name = 'id']").val();
-    var name = $("#createMoudleDialog input[name = 'name']").val();
-    var platformId = $("#platformId").combobox("getValue");
-    if ($.trim(name) == "" || $.trim(platformId) == "") {
+function submitCourse() {
+    var id = $("#createCourseDialog input[name = 'id']").val();
+    var name = $("#createCourseDialog input[name = 'name']").val();
+    var code = $("#createCourseDialog input[name = 'code']").val();
+    var moudleId = $("#moudleId").combobox("getValue");
+    if ($.trim(name) == "" || $.trim(code) == ""|| $.trim(moudleId) == "") {
         alert("必填项不能为空！");
         return;
     }
 
     $.ajax({
-        url : "user/create_moudle",
+        url : "course/create_course",
         type : "POST",
         dataType : "json",
         contentType : "application/json",
         data : JSON.stringify({
             id : id,
             name : name,
-            platformId : platformId
+            code : code,
+            moudleId : moudleId
 
         }),
         success : function (data) {
             $.messager.alert("提示",(id == "")?"新建成功":"修改成功","info",function () {
-                $("#moudleForm").form("clear");
-                $("#createMoudleDialog").dialog("close");
+                $("#courseForm").form("clear");
+                $("#createCourseDialog").dialog("close");
                 $("#dataGridTable").datagrid("reload");
             })
         },
@@ -34,18 +36,18 @@ function submitMoudle() {
     })
 }
 
-function openCreateMoudleDialog() {
-    $("#moudleForm").form("clear");
-    $("#createMoudleDialog").dialog("open");
+function openCreateCourseDialog() {
+    $("#courseForm").form("clear");
+    $("#createCourseDialog").dialog("open");
 }
 
 /**
- * 批量删除模块
+ * 批量删除课程
  */
-function deleteMoudle() {
+function deleteCourse() {
     var checkedItems = $('#dataGridTable').datagrid('getChecked');
     if (checkedItems.length == 0) {
-        $.messager.alert("提示", "请选择要删除的模块", "info", function () {
+        $.messager.alert("提示", "请选择要删除的课程", "info", function () {
             return;
         })
     } else {
@@ -56,7 +58,7 @@ function deleteMoudle() {
         $.messager.confirm('确定', '确定要删除吗?', function(r) {
             if (r) {
                 $.ajax({
-                    url: 'user/delete_moudle',
+                    url: 'course/delete_course',
                     type: 'POST',
                     data: JSON.stringify(ids),
                     contentType : "application/json",
@@ -78,20 +80,20 @@ function deleteMoudle() {
 /**
  * 修改数据
  */
-function updateMoudle(index) {
-    $("#moudleForm").form("clear");
+function updateCourse(index) {
+    $("#courseForm").form("clear");
     var rows = $("#dataGridTable").datagrid("getRows");
     var data = rows[index];
-    $("#moudleForm").form("load", data);
-    $("#createMoudleDialog").dialog("open");
+    $("#courseForm").form("load", data);
+    $("#createCourseDialog").dialog("open");
 }
 
 $(function(){
     /**
-     * 查询平台
+     * 查询课程
      */
     $('#dataGridTable').datagrid({
-        url: 'user/moudle_manage',
+        url: 'course/course_manage',
         method: 'GET',
         toolbar: '#dataGridTableButtons',
         fit: true,
@@ -107,11 +109,13 @@ $(function(){
         columns:[[
             {field: 'ck',checkbox: 'true'},
             {field:'id',title:'操作', formatter: function(value, row, index){
-                    return '<a href="javascript:void(0);" onClick="updateMoudle(\''+index+'\');">修改</a> ';
+                    return '<a href="javascript:void(0);" onClick="updateCourse(\''+index+'\');">修改</a> ';
                 }},
             {field: 'name',title: '名称'},
-            {field: 'platformName',title: '平台名称'},
-            {field: 'platformId', hidden:'true'}
+            {field: 'code',title: '课程编码'},
+            {field: 'platformName',title: '平台'},
+            {field: 'moudleName',title: '模块'},
+            {field: 'moudleId',hidden:'true'}
         ]]
     });
 });

@@ -190,4 +190,17 @@ public class UserController {
         return commonComboDtos;
     }
 
+    @GetMapping("get_moudle")
+    public List<CommonComboDto> getMoudleCombobox(@RequestParam(defaultValue = "") String q) {
+        List<Moudle> moudles = userService.getMoudle(q);
+        List<CommonComboDto> commonComboDtos = new ArrayList<>();
+        moudles.stream().forEach(o -> {
+            CommonComboDto commonComboDto = new CommonComboDto();
+            commonComboDto.setValue(o.getId());
+            commonComboDto.setText(o.getName());
+            commonComboDtos.add(commonComboDto);
+        });
+        return commonComboDtos;
+    }
+
 }

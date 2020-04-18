@@ -5,6 +5,7 @@ import com.sanjiang.talent.mapper.*;
 import com.sanjiang.talent.po.Link;
 import com.sanjiang.talent.po.Role;
 import com.sanjiang.talent.po.User;
+import com.sanjiang.talent.po.course.Course;
 import com.sanjiang.talent.po.course.Moudle;
 import com.sanjiang.talent.po.course.Platform;
 import com.sanjiang.talent.service.UserService;
@@ -34,6 +35,8 @@ public class UserServiceImpl implements UserService {
     private PlatformMapper platformMapper;
     @Autowired
     private MoudleMapper moudleMapper;
+    @Autowired
+    private CourseMapper courseMapper;
 
     @Override
     public List<User> getUser(String q) {
@@ -264,11 +267,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteMoudle(List<String> ids) {
+        ids.stream().forEach( o -> {
+            List<Course> courseByMoudleId = courseMapper.getCourseByMoudleId(o);
+            if (courseByMoudleId.size() > 0) {
+                throw new RuntimeException("模块中有关联的课程，请先删除课程！");
+            }
+        });
+
         moudleMapper.deleteMoudle(ids);
     }
 
     @Override
     public List<Platform> getPlatform(String q) {
         return platformMapper.getPlatform(q);
+    }
+
+    @Override
+    public List<Moudle> getMoudle(String q) {
+        return moudleMapper.getMoudle(q);
     }
 }

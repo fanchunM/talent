@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sanjiang.talent.mapper.CourseUnitsMapper">
+    <select id="getCourseUnitsManage"  resultType="com.sanjiang.talent.po.course.CourseUnits">
+      select * from courseunits limit #{currentIndex}, #{rows}
+    </select>
+
+    <insert id="createCourseUnits" parameterType="com.sanjiang.talent.po.course.CourseUnits">
+        insert into courseunits(id, name) values(#{id}, #{name})
+    </insert>
+
+    <delete id="deleteCourseUnits">
+        delete from courseunits where id in<foreach collection="idList" item="idList" open="(" separator="," close=")">#{idList,jdbcType=VARCHAR}</foreach>
+    </delete>
 </mapper>

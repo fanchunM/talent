@@ -12,6 +12,9 @@ import java.util.List;
 @Repository
 public interface MoudleMapper {
 
+    @Select("select * from moudle where id = #{id}")
+    Moudle getMoudleById(@Param("id") String id);
+
     List<Moudle> getMoudleManage(@Param("currentIndex") Integer currentIndex, @Param("rows") Integer rows);
 
     @Select("select count(*) from moudle")
