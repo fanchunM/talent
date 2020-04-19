@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sanjiang.talent.mapper.ProfessionMapper">
+    <select id="getProfessionManage"  resultType="com.sanjiang.talent.po.profession.Profession">
+          select * from profession limit #{currentIndex}, #{rows}
+        </select>
+
+    <insert id="createProfession" parameterType="com.sanjiang.talent.po.profession.Profession">
+          insert into profession(id, name, code_in, code_out) values(#{id}, #{name}, #{codeIn}, #{codeOut})
+        </insert>
+
+    <delete id="deleteProfession">
+        delete from profession where id in<foreach collection="idList" item="idList" open="(" separator="," close=")">#{idList,jdbcType=VARCHAR}</foreach>
+    </delete>
 </mapper>

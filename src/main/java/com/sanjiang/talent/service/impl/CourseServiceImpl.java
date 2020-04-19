@@ -55,7 +55,6 @@ public class CourseServiceImpl implements CourseService {
             course.setId(UUID.randomUUID().toString().replace("-", ""));
             courseMapper.createCourse(course);
         }
-
     }
 
     @Override
@@ -86,5 +85,11 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void deleteCourseUnits(List<String> ids) {
         courseUnitsMapper.deleteCourseUnits(ids);
+    }
+
+    @Override
+    public List<Course> getCourse(String q) {
+        return courseMapper.getCourse(q);
+
     }
 }

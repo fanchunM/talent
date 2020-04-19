@@ -24,5 +24,4 @@ public class CoursePageController {
         log.info("ENTER COURSE UNITS MANAGE PAGE");
         return "courses/courseUnitsManage";
     }
-
 }

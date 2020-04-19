@@ -29,4 +29,7 @@ public interface CourseMapper {
 
     @Select("select * from course where moudle_id = #{moudleId}")
     List<Course> getCourseByMoudleId(@Param("moudleId") String moudleId);
+
+    @Select("select * from course where name like '%${q}%'")
+    List<Course> getCourse(@Param("q") String q);
 }

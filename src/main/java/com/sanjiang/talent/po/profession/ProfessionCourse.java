@@ -38,7 +38,7 @@ public class ProfessionCourse {
     /**
      * 授课
      */
-    private String Teaching;
+    private String teaching;
 
     /**
      * 上机

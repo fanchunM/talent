@@ -47,4 +47,11 @@ public interface CourseService {
      * @param ids
      */
     void deleteCourseUnits(List<String> ids);
+
+    /**
+     * 获取课程combobox
+     * @param q
+     * @return
+     */
+    List<Course> getCourse(String q);
 }
