@@ -33,7 +33,7 @@ public class ProfessionCourse {
     /**
      * 课内总学时
      */
-    private String courseToalHours;
+    private String courseTotalHours;
 
     /**
      * 授课
@@ -99,5 +99,17 @@ public class ProfessionCourse {
      *第八学期
      */
     private String term8;
+
+    private String platformName;
+
+    private String moudleName;
+
+    private String courseCode;
+
+    private String professionName;
+
+    private String courseName;
+
+
 
 }

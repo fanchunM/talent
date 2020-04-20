@@ -8,7 +8,7 @@ function submitProfessionCourse() {
 
     var courseNature = $("#createProfessionCourseDialog input[name = 'courseNature']").val();
     var courseInCredits = $("#createProfessionCourseDialog input[name = 'courseInCredits']").val();
-    var courseToalHours = $("#createProfessionCourseDialog input[name = 'courseToalHours']").val();
+    var courseTotalHours = $("#createProfessionCourseDialog input[name = 'courseTotalHours']").val();
     var teaching = $("#createProfessionCourseDialog input[name = 'teaching']").val();
     var onbroad = $("#createProfessionCourseDialog input[name = 'onbroad']").val();
     var practice = $("#createProfessionCourseDialog input[name = 'practice']").val();
@@ -38,7 +38,7 @@ function submitProfessionCourse() {
             courseId : courseId,
             courseNature : courseNature,
             courseInCredits : courseInCredits,
-            courseToalHours : courseToalHours,
+            courseTotalHours : courseTotalHours,
             teaching : teaching,
             onbroad : onbroad,
             practice : practice,
@@ -72,7 +72,7 @@ function openCreateProfessionCourseDialog() {
 }
 
 /**
- * 批量删除专业
+ * 批量删除专业课程
  */
 function deleteProfessionCourse() {
     var checkedItems = $('#dataGridTable').datagrid('getChecked');
@@ -118,6 +118,17 @@ function updateProfessionCourse(index) {
     $("#createProfessionCourseDialog").dialog("open");
 }
 
+function searchByQuery() {
+    var professionId = $("#professionId2").combobox("getValue");
+    var courseId = $("#courseId2").combobox("getValue");
+    $("#dataGridTable").datagrid({
+        queryParams : {
+            professionId: professionId,
+            courseId: courseId
+        }
+    })
+}
+
 $(function(){
     /**
      * 查询课程专业
@@ -139,7 +150,7 @@ $(function(){
         columns:[[
             {field: 'ck',checkbox: 'true'},
             {field:'id',title:'操作', formatter: function(value, row, index){
-                    return '<a href="javascript:void(0);" onClick="updateProfession(\''+index+'\');">修改</a> ';
+                    return '<a href="javascript:void(0);" onClick="updateProfessionCourse(\''+index+'\');">修改</a> ';
                 }},
             {field: 'platformName',title: '平台'},
             {field: 'moudleName',title: '模块'},
@@ -148,7 +159,7 @@ $(function(){
             {field: 'courseName',title: '课程名称'},
             {field: 'courseNature',title: '课程性质'},
             {field: 'courseInCredits',title: '课内学分'},
-            {field: 'courseToalHours',title: '课内总学时'},
+            {field: 'courseTotalHours',title: '课内总学时'},
             {field: 'teaching',title: '授课'},
             {field: 'onbroad',title: '上机'},
             {field: 'practice',title: '课内实践'},

@@ -26,6 +26,10 @@
     <div id="dataGridTableButtons" class="datagrid-toolbar-style" style="padding: 5px;">
         <a href="javascript:void(0);" class="btn btn-info btn-sm" onclick="openCreateProfessionCourseDialog();">新增</a>
         <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteProfessionCourse();">删除</a>
+        专业：<input id="professionId2" class="easyui-combobox" data-options="url:'profession/get_profession',method:'GET', mode :'remote',valueField: 'value',textField: 'text'"/>
+        课程：<input id="courseId2" class="easyui-combobox" data-options="url:'course/get_course',method:'GET', mode :'remote',valueField: 'value',textField: 'text'"/>
+        <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="searchByQuery();">查询</a>
+
     </div>
 </div>
 <div id="createProfessionCourseDialog" title="新增/修改" class="easyui-dialog" data-options="width:500, height:500, closed:true, buttons:'#createProfessionCourseDialogButtons'">
@@ -78,7 +82,7 @@
                     课内总学时
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="courseToalHours" name="courseToalHours" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="courseTotalHours" name="courseTotalHours" class="textbox add-div-width" data-options="required:true"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -132,10 +136,6 @@
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
-
-
-
-
             <div class=" row add-div">
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
@@ -145,70 +145,77 @@
                     <input id="term1" name="term1" class="textbox add-div-width" data-options="required:true"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-            </div><div class=" row add-div">
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
-                第二学期
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                <input id="term2" name="term2" class="textbox add-div-width" data-options="required:true"/>
+            <div class=" row add-div">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
+                    第二学期
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="term2" name="term2" class="textbox add-div-width" data-options="required:true"/>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-        </div><div class=" row add-div">
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
-                第三学期
+            <div class=" row add-div">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
+                    第三学期
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="term3" name="term3" class="textbox add-div-width" data-options="required:true"/>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                <input id="term3" name="term3" class="textbox add-div-width" data-options="required:true"/>
+            <div class=" row add-div">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
+                    第四学期
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="term4" name="term4" class="textbox add-div-width" data-options="required:true"/>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-        </div><div class=" row add-div">
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
-                第四学期
+            <div class=" row add-div">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
+                    第五学期
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="term5" name="term5" class="textbox add-div-width" data-options="required:true"/>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                <input id="term4" name="term4" class="textbox add-div-width" data-options="required:true"/>
+            <div class=" row add-div">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
+                    第六学期
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="term6" name="term6" class="textbox add-div-width" data-options="required:true"/>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-        </div><div class=" row add-div">
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
-                第五学期
+            <div class=" row add-div">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
+                    第七学期
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="term7" name="term7" class="textbox add-div-width" data-options="required:true"/>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                <input id="term5" name="term5" class="textbox add-div-width" data-options="required:true"/>
+            <div class=" row add-div">
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
+                    第八学期
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 text-left">
+                    <input id="term8" name="term8" class="textbox add-div-width" data-options="required:true"/>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-        </div><div class=" row add-div">
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
-                第六学期
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                <input id="term6" name="term6" class="textbox add-div-width" data-options="required:true"/>
-            </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-        </div><div class=" row add-div">
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
-                第七学期
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                <input id="term7" name="term7" class="textbox add-div-width" data-options="required:true"/>
-            </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-        </div><div class=" row add-div">
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
-                第八学期
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                <input id="term8" name="term8" class="textbox add-div-width" data-options="required:true"/>
-            </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
-        </div>
         </form>
     </div>
 </div>

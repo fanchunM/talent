@@ -1,6 +1,7 @@
 package com.sanjiang.talent.controller;
 
 import com.sanjiang.talent.po.profession.Profession;
+import com.sanjiang.talent.po.profession.ProfessionCourse;
 import com.sanjiang.talent.service.ProfessionService;
 import com.sanjiang.talent.vo.CommonComboDto;
 import lombok.extern.slf4j.Slf4j;
@@ -53,5 +54,26 @@ public class ProfessionController {
             commonComboDtos.add(commonComboDto);
         });
         return commonComboDtos;
+    }
+
+    @GetMapping("profession_course_manage")
+    public Map<String, Object> getProfessionCourseManage(@RequestParam(defaultValue = "1") String page,
+                                                   @RequestParam(defaultValue = "20") String rows,
+                                                         @RequestParam(required = false) String professionId,
+                                                         @RequestParam(required = false) String courseId) {
+        return professionService.getProfessionCourseManage(Integer.valueOf(page), Integer.valueOf(rows), professionId, courseId);
+    }
+
+    @PostMapping("create_profession_course")
+    public ResponseEntity<String> createProfessionCourse(@RequestBody ProfessionCourse professionCourse) {
+        professionService.createProfessionCourse(professionCourse);
+        return new ResponseEntity<String>("{\"success\":true}", HttpStatus.OK);
+    }
+
+    @PostMapping("delete_profession_course")
+    public ResponseEntity<String> deleteProfessionCourse(@RequestBody List<String> ids) {
+        log.info("delete Profession Course where id in {}", ids);
+        professionService.deleteProfessionCourse(ids);
+        return new ResponseEntity<String>("{\"success\":true}", HttpStatus.OK);
     }
 }
