@@ -28,77 +28,77 @@ public class ProfessionCourse {
     /**
      * 课内学分
      */
-    private String courseInCredits;
+    private double courseInCredits;
 
     /**
      * 课内总学时
      */
-    private String courseTotalHours;
+    private double courseTotalHours;
 
     /**
      * 授课
      */
-    private String teaching;
+    private double teaching;
 
     /**
      * 上机
      */
-    private String onbroad;
+    private double onbroad;
 
     /**
      * 课内实践
      */
-    private String practice;
+    private double practice;
 
     /**
      *实验室实验
      */
-    private String laboratory;
+    private double laboratory;
 
     /**
      *课外学分
      */
-    private String courseOutCredits;
+    private double courseOutCredits;
 
     /**
      *第一学期
      */
-    private String term1;
+    private double term1;
 
     /**
      *第二学期
      */
-    private String term2;
+    private double term2;
 
     /**
      *第三学期
      */
-    private String term3;
+    private double term3;
 
     /**
      *第四学期
      */
-    private String term4;
+    private double term4;
 
     /**
      *第五学期
      */
-    private String term5;
+    private double term5;
 
     /**
      *第六学期
      */
-    private String term6;
+    private double term6;
 
     /**
      *第七学期
      */
-    private String term7;
+    private double term7;
 
     /**
      *第八学期
      */
-    private String term8;
+    private double term8;
 
     private String platformName;
 

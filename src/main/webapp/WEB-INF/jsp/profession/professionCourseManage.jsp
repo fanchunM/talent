@@ -28,7 +28,7 @@
         <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="deleteProfessionCourse();">删除</a>
         专业：<input id="professionId2" class="easyui-combobox" data-options="url:'profession/get_profession',method:'GET', mode :'remote',valueField: 'value',textField: 'text'"/>
         课程：<input id="courseId2" class="easyui-combobox" data-options="url:'course/get_course',method:'GET', mode :'remote',valueField: 'value',textField: 'text'"/>
-        <a href="javascript:void(0);" class="btn btn-danger btn-sm" onclick="searchByQuery();">查询</a>
+        <a href="javascript:void(0);" class="btn btn-default btn-sm" onclick="searchByQuery();">查询</a>
 
     </div>
 </div>
@@ -72,7 +72,7 @@
                     课内学分
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="courseInCredits" name="courseInCredits" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="courseInCredits" name="courseInCredits" class="easyui-numberbox" data-options="precision:1"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -82,7 +82,7 @@
                     课内总学时
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="courseTotalHours" name="courseTotalHours" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="courseTotalHours" name="courseTotalHours" class="easyui-numberbox" data-options="precision:1"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -92,7 +92,7 @@
                     授课
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="teaching" name="teaching" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="teaching" name="teaching" class="easyui-numberbox" data-options="precision:1"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -102,7 +102,7 @@
                     上机
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="onbroad" name="onbroad" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="onbroad" name="onbroad" class="easyui-numberbox" data-options="precision:1"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -112,7 +112,7 @@
                     课内实践
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="practice" name="practice" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="practice" name="practice" class="easyui-numberbox" data-options="precision:1"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -122,7 +122,7 @@
                     实验室实验
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="laboratory" name="laboratory" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="laboratory" name="laboratory" class="easyui-numberbox" data-options="precision:1"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -132,7 +132,7 @@
                     课外学分
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="courseOutCredits" name="courseOutCredits" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="courseOutCredits" name="courseOutCredits" class="easyui-numberbox" data-options="precision:1"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -142,7 +142,7 @@
                     第一学期
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="term1" name="term1" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="term1" name="term1" class="easyui-numberbox" data-options="precision:1"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -152,7 +152,7 @@
                     第二学期
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="term2" name="term2" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="term2" name="term2" class="easyui-numberbox" data-options="precision:1"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -162,7 +162,7 @@
                     第三学期
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="term3" name="term3" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="term3" name="term3" class="easyui-numberbox" data-options="precision:1"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -172,7 +172,7 @@
                     第四学期
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="term4" name="term4" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="term4" name="term4" class="easyui-numberbox" data-options="precision:1"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -182,7 +182,7 @@
                     第五学期
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="term5" name="term5" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="term5" name="term5" class="easyui-numberbox" data-options="precision:1"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -192,7 +192,7 @@
                     第六学期
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="term6" name="term6" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="term6" name="term6" class="easyui-numberbox" data-options="precision:1"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -202,7 +202,7 @@
                     第七学期
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="term7" name="term7" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="term7" name="term7" class="easyui-numberbox" data-options="precision:1"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>
@@ -212,7 +212,7 @@
                     第八学期
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
-                    <input id="term8" name="term8" class="textbox add-div-width" data-options="required:true"/>
+                    <input id="term8" name="term8" class="easyui-numberbox" data-options="precision:1"/>
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
             </div>

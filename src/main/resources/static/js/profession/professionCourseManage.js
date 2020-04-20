@@ -7,21 +7,21 @@ function submitProfessionCourse() {
     var courseId = $("#courseId").combobox("getValue");
 
     var courseNature = $("#createProfessionCourseDialog input[name = 'courseNature']").val();
-    var courseInCredits = $("#createProfessionCourseDialog input[name = 'courseInCredits']").val();
-    var courseTotalHours = $("#createProfessionCourseDialog input[name = 'courseTotalHours']").val();
-    var teaching = $("#createProfessionCourseDialog input[name = 'teaching']").val();
-    var onbroad = $("#createProfessionCourseDialog input[name = 'onbroad']").val();
-    var practice = $("#createProfessionCourseDialog input[name = 'practice']").val();
-    var laboratory = $("#createProfessionCourseDialog input[name = 'laboratory']").val();
-    var courseOutCredits = $("#createProfessionCourseDialog input[name = 'courseOutCredits']").val();
-    var term1 = $("#createProfessionCourseDialog input[name = 'term1']").val();
-    var term2 = $("#createProfessionCourseDialog input[name = 'term2']").val();
-    var term3 = $("#createProfessionCourseDialog input[name = 'term3']").val();
-    var term4 = $("#createProfessionCourseDialog input[name = 'term4']").val();
-    var term5 = $("#createProfessionCourseDialog input[name = 'term5']").val();
-    var term6 = $("#createProfessionCourseDialog input[name = 'term6']").val();
-    var term7 = $("#createProfessionCourseDialog input[name = 'term7']").val();
-    var term8 = $("#createProfessionCourseDialog input[name = 'term8']").val();
+    var courseInCredits = $("#courseInCredits").numberbox("getValue");
+    var courseTotalHours = $("#courseTotalHours").numberbox("getValue");
+    var teaching = $("#teaching").numberbox("getValue");
+    var onbroad = $("#onbroad").numberbox("getValue");
+    var practice = $("#practice").numberbox("getValue");
+    var laboratory = $("#laboratory").numberbox("getValue");
+    var courseOutCredits = $("#courseOutCredits").numberbox("getValue");
+    var term1 = $("#term1").numberbox("getValue");
+    var term2 = $("#term2").numberbox("getValue");
+    var term3 = $("#term3").numberbox("getValue");
+    var term4 = $("#term4").numberbox("getValue");
+    var term5 = $("#term5").numberbox("getValue");
+    var term6 = $("#term6").numberbox("getValue");
+    var term7 = $("#term7").numberbox("getValue");
+    var term8 = $("#term8").numberbox("getValue");
     if ($.trim(professionId) == "" || $.trim(courseId) == "") {
         alert("必填项不能为空！");
         return;
