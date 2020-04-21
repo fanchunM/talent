@@ -10,14 +10,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @MapperScan("com.sanjiang.talent.mapper")
 @EnableTransactionManagement
-public class TalentApplication extends SpringBootServletInitializer {
+public class TalentApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(TalentApplication.class, args);
-    }
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(TalentApplication.class);
     }
 }
