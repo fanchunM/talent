@@ -55,7 +55,7 @@
             <div class=" row add-div">
                 <div class="col-xs-2 col-sm-2 col-md-2 text-center"></div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-center add-div-font">
-                    校外码
+                    专业码
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 text-left">
                     <input id="codeOut" name="codeOut" class="easyui-validatebox add-div-width" data-options="required:true"/>

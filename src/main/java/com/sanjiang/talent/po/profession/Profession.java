@@ -21,7 +21,7 @@ public class Profession {
     private String codeIn;
 
     /**
-     * 校外码
+     * 专业码
      */
     private String codeOut;
 
