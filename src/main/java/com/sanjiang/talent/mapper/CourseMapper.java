@@ -22,7 +22,7 @@ public interface CourseMapper {
 
     void createCourse(Course course);
 
-    @Update("update course set name = #{course.name}, code = #{course.code}, moudle_id = #{course.moudleId} where id = #{course.id}")
+    @Update("update course set name = #{course.name}, code = #{course.code}, course_units_id = #{course.courseUnitsId}, moudle_id = #{course.moudleId} where id = #{course.id}")
     int updateCourse(@Param("course") Course course);
 
     int deleteCourse(@Param("idList") List<String> idList);
@@ -32,4 +32,7 @@ public interface CourseMapper {
 
     @Select("select * from course where name like '%${q}%'")
     List<Course> getCourse(@Param("q") String q);
+
+
+
 }

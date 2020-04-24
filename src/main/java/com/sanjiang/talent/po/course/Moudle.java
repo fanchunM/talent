@@ -21,7 +21,7 @@ public class Moudle {
     private String platformId;
 
     /**
-     * 名称
+     * 平台名称
      */
     private String platformName;
 

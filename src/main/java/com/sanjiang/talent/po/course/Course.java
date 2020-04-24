@@ -35,7 +35,17 @@ public class Course {
      */
     private String moudleName;
 
+    /**
+     * 开课单位ID
+     */
 
+     private String courseUnitsId;
+
+    /**
+     * 开课单位名
+     */
+
+    private String courseUnitsName;
 
 
 }

@@ -32,6 +32,8 @@ public class ProfessionServiceImpl implements ProfessionService {
     private MoudleMapper moudleMapper;
     @Autowired
     private PlatformMapper platformMapper;
+    @Autowired
+    private CourseUnitsMapper courseUnitsMapper;
 
     @Override
     public Map<String, Object> getProfessionManage(Integer page, Integer rows) {
@@ -81,6 +83,7 @@ public class ProfessionServiceImpl implements ProfessionService {
             o.setCourseCode(courseById.getCode());
             o.setCourseName(courseById.getName());
             o.setProfessionName(professionById.getName());
+            o.setCourseUnitsName(courseUnitsMapper.getCourseUnitsById(courseById.getCourseUnitsId()).getName());
         });
         Integer professionCourseCount = professionCourseMapper.getProfessionCourseCount();
         map.put("total", professionCourseCount);

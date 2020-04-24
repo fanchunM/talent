@@ -172,7 +172,8 @@ $(function(){
             {field: 'term5',title: '第五学期'},
             {field: 'term6',title: '第六学期'},
             {field: 'term7',title: '第七学期'},
-            {field: 'term8',title: '第八学期'}
+            {field: 'term8',title: '第八学期'},
+            {field: 'courseUnitsName',title: '开课单位'}
         ]]
     });
 });

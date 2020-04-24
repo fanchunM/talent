@@ -1,6 +1,7 @@
 package com.sanjiang.talent.mapper;
 
 import com.sanjiang.talent.po.course.CourseUnits;
+import com.sanjiang.talent.po.course.Moudle;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface CourseUnitsMapper {
-    @Select("select * from platform where id = #{id}")
+    @Select("select * from courseunits where id = #{id}")
     CourseUnits getCourseUnitsById(@Param("id") String id);
 
     List<CourseUnits> getCourseUnitsManage(@Param("currentIndex") Integer currentIndex, @Param("rows") Integer rows);
@@ -24,4 +25,8 @@ public interface CourseUnitsMapper {
     int updateCourseUnits(@Param("courseUnits") CourseUnits courseUnits);
 
     int deleteCourseUnits(@Param("idList") List<String> idList);
+
+    @Select("select * from courseunits where name like '%${q}%'")
+    List<CourseUnits> getCourseUnits(@Param("q") String q);
+
 }

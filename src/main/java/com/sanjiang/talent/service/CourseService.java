@@ -2,6 +2,7 @@ package com.sanjiang.talent.service;
 
 import com.sanjiang.talent.po.course.Course;
 import com.sanjiang.talent.po.course.CourseUnits;
+import com.sanjiang.talent.vo.CommonComboDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,4 +55,11 @@ public interface CourseService {
      * @return
      */
     List<Course> getCourse(String q);
+
+    /**
+     * 获取开课单位combo
+     * @param q
+     * @return
+     */
+    List<CommonComboDto> getCourseUnitsForCombo(String q);
 }

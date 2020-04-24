@@ -110,6 +110,8 @@ public class ProfessionCourse {
 
     private String courseName;
 
+    private String courseUnitsName;
+
 
 
 }

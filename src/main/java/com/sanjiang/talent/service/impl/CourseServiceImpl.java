@@ -9,15 +9,13 @@ import com.sanjiang.talent.po.course.CourseUnits;
 import com.sanjiang.talent.po.course.Moudle;
 import com.sanjiang.talent.service.CourseService;
 import com.sanjiang.talent.util.VGUtility;
+import com.sanjiang.talent.vo.CommonComboDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -40,6 +38,8 @@ public class CourseServiceImpl implements CourseService {
             Moudle moudleById = moudleMapper.getMoudleById(moudleId);
             o.setMoudleName(moudleById.getName());
             o.setPlatformName(platformMapper.getPlatformById(moudleById.getPlatformId()).getName());
+            CourseUnits courseUnitsById = courseUnitsMapper.getCourseUnitsById(o.getCourseUnitsId());
+            o.setCourseUnitsName(courseUnitsById.getName());
         });
         Integer courseCount = courseMapper.getCourseCount();
         map.put("total", courseCount);
@@ -90,6 +90,18 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<Course> getCourse(String q) {
         return courseMapper.getCourse(q);
+    }
 
+    @Override
+    public List<CommonComboDto> getCourseUnitsForCombo(String q) {
+        List<CourseUnits> courseUnits = courseUnitsMapper.getCourseUnits(q);
+        List<CommonComboDto> commonComboDtos = new ArrayList<CommonComboDto>();
+        courseUnits.stream().forEach(o -> {
+            CommonComboDto commonComboDto = new CommonComboDto();
+            commonComboDto.setValue(o.getId());
+            commonComboDto.setText(o.getName());
+            commonComboDtos.add(commonComboDto);
+        });
+        return commonComboDtos;
     }
 }

@@ -6,10 +6,12 @@ function submitCourse() {
     var name = $("#createCourseDialog input[name = 'name']").val();
     var code = $("#createCourseDialog input[name = 'code']").val();
     var moudleId = $("#moudleId").combobox("getValue");
-    if ($.trim(name) == "" || $.trim(code) == ""|| $.trim(moudleId) == "") {
+    var courseUnitsId = $("#courseUnitsId").combobox("getValue");
+    if ($.trim(name) == "" || $.trim(code) == ""|| $.trim(moudleId) == ""|| $.trim(courseUnitsId) == "") {
         alert("必填项不能为空！");
         return;
     }
+
 
     $.ajax({
         url : "course/create_course",
@@ -20,7 +22,8 @@ function submitCourse() {
             id : id,
             name : name,
             code : code,
-            moudleId : moudleId
+            moudleId : moudleId,
+            courseUnitsId : courseUnitsId
 
         }),
         success : function (data) {
@@ -115,7 +118,9 @@ $(function(){
             {field: 'code',title: '课程编码'},
             {field: 'platformName',title: '平台'},
             {field: 'moudleName',title: '模块'},
-            {field: 'moudleId',hidden:'true'}
+            {field: 'moudleId',hidden:'true'},
+            {field: 'courseUnitsName',title: '开课单位'},
+            {field: 'courseUnitsId',hidden:'true'}
         ]]
     });
 });

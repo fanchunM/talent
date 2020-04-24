@@ -77,4 +77,9 @@ public class CourseController {
         return commonComboDtos;
     }
 
+    @GetMapping("get_courseunits")
+    public List<CommonComboDto> getCourseUnitsForcombo(@RequestParam(defaultValue = "") String q) {
+        return courseService.getCourseUnitsForCombo(q);
+    }
+
 }
