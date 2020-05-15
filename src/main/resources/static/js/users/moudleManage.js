@@ -1,5 +1,5 @@
 /**
- * 新增学生
+ * 新增模块
  */
 function submitMoudle() {
     var id = $("#createMoudleDialog input[name = 'id']").val();

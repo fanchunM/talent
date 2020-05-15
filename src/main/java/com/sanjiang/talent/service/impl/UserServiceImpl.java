@@ -106,11 +106,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createStudentOrTeacher(User user, String loginUserId) {
         if (!VGUtility.isEmpty(user.getId())) {
+            //修改
             userMapper.updateStudentOrTeacher(user);
         } else {
             user.setId(UUID.randomUUID().toString().replace("-", ""));
             user.setCreateBy(loginUserId);
             user.setCreateTime(new Date());
+            //新增
             userMapper.createStudentOrTeacher(user);
         }
     }
